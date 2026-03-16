@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Jurisdiccional Xochitlamapan</title>
+    <style>
+        :root {
+            --jade: #0B4A3F;
+            --vino: #631123;
+            --tierra: #5D4037;
+            --crema: #F4F1EA;
+        }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--crema); color: var(--tierra); }
+        
+        header { 
+            background: white; 
+            border-bottom: 5px solid var(--vino); 
+            padding: 30px; 
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .escudo { width: 120px; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2)); }
+        
+        h1 { color: var(--jade); margin: 10px 0 5px 0; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .sub { color: var(--vino); font-weight: bold; font-size: 0.9rem; margin-bottom: 20px; }
+
+        .hero { background: var(--jade); color: white; padding: 40px 20px; text-align: center; }
+        
+        .grid { 
+            max-width: 1100px; 
+            margin: -40px auto 50px; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 25px; 
+            padding: 0 20px;
+        }
+
+        .boton { 
+            background: white; 
+            padding: 35px 20px; 
+            border-radius: 12px; 
+            text-align: center; 
+            text-decoration: none; 
+            color: var(--tierra);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            border: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .boton:hover { transform: translateY(-10px); border-color: var(--vino); box-shadow: 0 12px 25px rgba(99,17,35,0.2); }
+        
+        .boton h3 { color: var(--vino); margin: 15px 0 10px 0; }
+        .boton p { font-size: 0.85rem; margin: 0; color: #666; }
+
+        footer { background: var(--tierra); color: white; padding: 50px 20px; text-align: center; font-size: 0.8rem; line-height: 1.6; }
+        .art2 { background: var(--vino); color: white; padding: 5px 15px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="logo.png" class="escudo" alt="Escudo Originario">
+    <h1>Comunidad Indígena Xochitlamapan</h1>
+    <div class="sub">JURISDICCIÓN ORIGINARIA • ESTADO-NACIÓN MEXICANO</div>
+</header>
+
+<div class="hero">
+    <div class="art2">AMBITO DE APLICACIÓN: ART. 2 CONSTITUCIONAL</div>
+    <h2>Plataforma de Autogobierno y Servicios Digitales</h2>
+</div>
+
+<div class="grid">
+    <a href="verificar.html" class="boton">
+        <span style="font-size: 3rem;">📜</span>
+        <h3>MOVILIDAD</h3>
+        <p>Verificación de Licencias Consuetudinarias y Pericia Vehicular.</p>
+    </a>
+    
+    <a href="identidad.html" class="boton">
+        <span style="font-size: 3rem;">🆔</span>
+        <h3>IDENTIDAD</h3>
+        <p>Validación de Cédulas de Identidad y Registro Civil Autónomo.</p>
+    </a>
+
+    <a href="hacienda.html" class="boton">
+        <span style="font-size: 3rem;">🏛️</span>
+        <h3>HACIENDA</h3>
+        <p>CIEC (RFC Comunitario) y Registro Tributario Jurisdiccional.</p>
+    </a>
+
+    <a href="leyes.html" class="boton">
+        <span style="font-size: 3rem;">⚖️</span>
+        <h3>MARCO LEGAL</h3>
+        <p>Constitución, Código Civil y Reglamentos de Xochitlamapan.</p>
+    </a>
+</div>
+
+<footer>
+    <p><strong>NOTIFICACIÓN A LAS AUTORIDADES CIVILES Y MILITARES:</strong><br>
+    Este portal es la extensión digital de la fe pública comunitaria. Los documentos aquí validados tienen plena vigencia legal conforme al control de convencionalidad y la Constitución Política de los Estados Unidos Mexicanos.</p>
+</footer>
+
+</body>
+</html>
