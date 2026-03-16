@@ -1,0 +1,24 @@
+<!-- Este código detectará quién es la persona según el link del QR -->
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const nombre = urlParams.get('n') || "USUARIO NO REGISTRADO";
+    const cua = urlParams.get('id') || "0000";
+    const tipo = urlParams.get('t') || "A";
+    const antiguedad = urlParams.get('a') || "N/A";
+
+    document.write(`
+        <div style="text-align:center; padding:50px; font-family:sans-serif; background:#F4F1EA;">
+            <div style="background:white; border-top:10px solid #631123; padding:20px; border-radius:10px; box-shadow:0 10px 20px rgba(0,0,0,0.1); max-width:400px; margin:auto;">
+                <h2 style="color:#0B4A3F;">✅ REGISTRO VÁLIDO</h2>
+                <hr>
+                <p style="text-align:left;"><strong>NOMBRE:</strong> ${nombre}</p>
+                <p style="text-align:left;"><strong>CUA:</strong> ${cua}</p>
+                <p style="text-align:left;"><strong>TIPO:</strong> ${tipo}</p>
+                <p style="text-align:left;"><strong>ANTIGÜEDAD:</strong> ${antiguedad}</p>
+                <p style="text-align:left;"><strong>VIGENCIA:</strong> PERMANENTE</p>
+                <br>
+                <small style="color:red;">ESTE DOCUMENTO ES UN ACTO DE AUTORIDAD JURISDICCIONAL ART. 2° CONST.</small>
+            </div>
+        </div>
+    `);
+</script>
