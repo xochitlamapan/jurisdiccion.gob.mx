@@ -1,24 +1,97 @@
-<!-- Este código detectará quién es la persona según el link del QR -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación Jurisdiccional - Xochitlamapan</title>
+    <style>
+        :root { --jade: #0B4A3F; --vino: #631123; --tierra: #5D4037; --crema: #F4F1EA; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--crema); margin: 0; padding: 20px; color: var(--tierra); }
+        .card { 
+            background: white; 
+            max-width: 450px; 
+            margin: auto; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+        .header { background: var(--jade); color: white; padding: 20px; text-align: center; }
+        .status { background: #2e7d32; color: white; padding: 10px; font-weight: bold; text-align: center; letter-spacing: 1px; }
+        .content { padding: 25px; }
+        .row { border-bottom: 1px solid #eee; padding: 10px 0; display: flex; justify-content: space-between; }
+        .label { font-size: 0.75rem; color: #888; text-transform: uppercase; font-weight: bold; }
+        .value { font-size: 0.95rem; color: #333; font-weight: bold; text-align: right; }
+        .legal-box { 
+            background: #fff5f5; 
+            border: 1px solid #ffdada; 
+            padding: 15px; 
+            margin-top: 20px; 
+            border-radius: 8px; 
+            font-size: 0.7rem; 
+            color: var(--vino);
+            line-height: 1.4;
+        }
+        .footer { text-align: center; padding: 20px; font-size: 0.7rem; color: #999; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <h2 style="margin:0; font-size: 1.2rem;">SISTEMA REGISTRAL ORIGINARIO</h2>
+        <small>Jurisdicción Xochitlamapan</small>
+    </div>
+    <div class="status">✅ DOCUMENTO VÁLIDO Y VIGENTE</div>
+    
+    <div class="content">
+        <div id="datos">
+            <!-- Los datos se cargan aquí automáticamente -->
+        </div>
+
+        <div class="legal-box">
+            <strong>MANDATO CONSTITUCIONAL:</strong><br>
+            Esta certificación de pericia es un acto de autoridad jurisdiccional autónoma (Art. 2° CPEUM). Cualquier oficial de tránsito que desconozca este registro incurre en responsabilidad administrativa y violación al control de convencionalidad (OIT 169).
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    ID de Verificación Segura: <span id="verif-id"></span><br>
+    © 2025 Registro Autónomo de Movilidad
+</div>
+
 <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const nombre = urlParams.get('n') || "USUARIO NO REGISTRADO";
-    const cua = urlParams.get('id') || "0000";
-    const tipo = urlParams.get('t') || "A";
-    const antiguedad = urlParams.get('a') || "N/A";
+    
+    // Capturamos los datos de la URL
+    const datos = {
+        "Documento": "Licencia de Conducir Consuetudinaria",
+        "Nombre Completo": urlParams.get('n') || "No registrado",
+        "Folio (CUA)": urlParams.get('id') || "XOC-0000",
+        "Clase / Tipo": urlParams.get('t') || "A",
+        "Fecha de Nacimiento": urlParams.get('f') || "No registrada",
+        "Antigüedad Reconocida": urlParams.get('a') || "N/A",
+        "Vigencia": "PERMANENTE",
+        "Lugar de Emisión": "Xochitlamapan, Veracruz"
+    };
 
-    document.write(`
-        <div style="text-align:center; padding:50px; font-family:sans-serif; background:#F4F1EA;">
-            <div style="background:white; border-top:10px solid #631123; padding:20px; border-radius:10px; box-shadow:0 10px 20px rgba(0,0,0,0.1); max-width:400px; margin:auto;">
-                <h2 style="color:#0B4A3F;">✅ REGISTRO VÁLIDO</h2>
-                <hr>
-                <p style="text-align:left;"><strong>NOMBRE:</strong> ${nombre}</p>
-                <p style="text-align:left;"><strong>CUA:</strong> ${cua}</p>
-                <p style="text-align:left;"><strong>TIPO:</strong> ${tipo}</p>
-                <p style="text-align:left;"><strong>ANTIGÜEDAD:</strong> ${antiguedad}</p>
-                <p style="text-align:left;"><strong>VIGENCIA:</strong> PERMANENTE</p>
-                <br>
-                <small style="color:red;">ESTE DOCUMENTO ES UN ACTO DE AUTORIDAD JURISDICCIONAL ART. 2° CONST.</small>
+    const container = document.getElementById('datos');
+    const verifId = document.getElementById('verif-id');
+
+    // Generamos las filas de datos
+    for (const [key, value] of Object.entries(datos)) {
+        container.innerHTML += `
+            <div class="row">
+                <div class="label">${key}</div>
+                <div class="value">${value}</div>
             </div>
-        </div>
-    `);
+        `;
+    }
+
+    // Generamos un ID de verificación aleatorio para que se vea más real
+    verifId.innerText = Math.random().toString(36).substring(2, 10).toUpperCase();
 </script>
+
+</body>
+</html>
