@@ -11,19 +11,21 @@
         .escudo { width: 120px; }
         h1 { color: var(--jade); margin: 10px 0 5px 0; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
         .sub { color: var(--vino); font-weight: bold; font-size: 0.9rem; margin-bottom: 5px; }
-        
-        /* Sección de Tesis y Jurisprudencia */
         .scjn-box { margin-bottom: 15px; line-height: 1.4; }
         .scjn-line { color: var(--tierra); font-size: 0.75rem; font-style: italic; opacity: 0.9; }
         .personalidad { color: var(--vino); font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-top: 5px; }
-
         .hero { background: var(--jade); color: white; padding: 40px 20px; text-align: center; }
         .grid { max-width: 1100px; margin: -40px auto 50px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; padding: 0 20px; }
         .boton { background: white; padding: 35px 20px; border-radius: 12px; text-align: center; text-decoration: none; color: var(--tierra); box-shadow: 0 8px 20px rgba(0,0,0,0.1); border: 1px solid #ddd; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
         .boton:hover { transform: translateY(-5px); border-color: var(--vino); }
         .boton h3 { color: var(--vino); margin: 15px 0 10px 0; }
         .boton p { font-size: 0.85rem; margin: 0; color: #666; }
-        footer { background: var(--tierra); color: white; padding: 50px 20px; text-align: center; font-size: 0.8rem; border-top: 4px solid var(--vino); }
+        
+        /* FOOTER JURÍDICO AVANZADO */
+        footer { background: #111; color: #ccc; padding: 60px 40px; text-align: justify; font-size: 0.75rem; line-height: 1.6; border-top: 8px solid var(--vino); }
+        .legal-title { color: #fff; font-weight: bold; text-align: center; display: block; margin-bottom: 25px; font-size: 1rem; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid #444; padding-bottom: 10px; }
+        .warning-box { border: 1px solid #333; padding: 25px; border-radius: 5px; background: rgba(255,255,255,0.02); position: relative; }
+        .cite { color: #eee; font-weight: bold; text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -32,11 +34,9 @@
     <img src="logo.png" class="escudo" alt="Escudo Xochitlamapan">
     <h1>Comunidad Indígena Xochitlamapan</h1>
     <div class="sub">JURISDICCIÓN ORIGINARIA • ESTADO-NACIÓN MEXICANO</div>
-    
     <div class="scjn-box">
-        <div class="scjn-line">Comunidad Consuetudinaria • Reconocimiento SCJN (Tesis 2014, 2018)</div>
-        <div class="personalidad">Personalidad Jurídica Originaria • Jurisprudencia SCJN 2025</div>
-        <div style="font-size: 0.65rem; color: #777;">(Sujeto de Derecho Público Sin Subordinación Administrativa Externa)</div>
+        <div class="scjn-line">Sujeto de Derecho Público • Reconocimiento SCJN (2014, 2018)</div>
+        <div class="personalidad">Personalidad Jurídica Originaria • Precedente SCJN 2025</div>
     </div>
 </header>
 
@@ -48,35 +48,22 @@
 </div>
 
 <div class="grid">
-    <a href="verificar.html" class="boton">
-        <span style="font-size: 3rem;">📜</span>
-        <h3>MOVILIDAD</h3>
-        <p>Verificación de Licencias y Pericia Vehicular.</p>
-    </a>
-    
-    <a href="identidad.html" class="boton">
-        <span style="font-size: 3rem;">🆔</span>
-        <h3>IDENTIDAD Y REGISTROS</h3>
-        <p>Cédulas IDCC, CIEC y registros jurisdiccionales.</p>
-    </a>
-
-    <a href="leyes.html" class="boton">
-        <span style="font-size: 3rem;">⚖️</span>
-        <h3>MARCO LEGAL</h3>
-        <p>Constitución, Códigos y Precedentes de la SCJN.</p>
-    </a>
-
-    <a href="miembros.html" class="boton">
-        <span style="font-size: 3rem;">🔐</span>
-        <h3>ÁREA DE MIEMBROS</h3>
-        <p>Acceso restringido para integrantes de la Comunidad.</p>
-    </a>
+    <a href="verificar.html" class="boton"><h3>📜 MOVILIDAD</h3><p>Verificación de Licencias Jurisdiccionales.</p></a>
+    <a href="identidad.html" class="boton"><h3>🆔 IDENTIDAD</h3><p>Cédulas IDCC, CIEC y registros.</p></a>
+    <a href="leyes.html" class="boton"><h3>⚖️ MARCO LEGAL</h3><p>Constitución y Precedentes SCJN.</p></a>
+    <a href="miembros.html" class="boton"><h3>🔐 MIEMBROS</h3><p>Acceso restringido comunitario.</p></a>
 </div>
 
 <footer>
-    <p><strong>NOTIFICACIÓN DE SOBERANÍA:</strong><br>
-    Esta jurisdicción opera en horizontalidad de poderes conforme al Derecho Internacional y Nacional.<br>
-    Xochitlamapan, Veracruz • Estado-Nación Mexicano.</p>
+    <span class="legal-title">Mandato de Armonización y Notificación Perentoria</span>
+    <div class="warning-box">
+        Se notifica a toda autoridad civil o militar que esta Jurisdicción opera bajo el <strong>PRINCIPIO DE MAXIMIZACIÓN</strong> de Derechos Humanos (Art. 1° CPEUM) y la <strong>OBLIGACIÓN DE ARMONIZACIÓN</strong> dictada por la <span class="cite">Jurisprudencia SCJN 1a./J.37/2016</span>, la cual reconoce a los sistemas normativos indígenas como <strong>DERECHO VIGENTE</strong> con igual jerarquía que el derecho positivo. 
+        <br><br>
+        Esta Comunidad posee <strong>PERSONALIDAD JURÍDICA ORIGINARIA</strong> e inalienable conforme a la <span class="cite">Tesis SCJN CCCLII/2018 (10a)</span> y la <span class="cite">Tesis TEPJF LII/2016</span>, lo que la faculta como Sujeto de Derecho Público con autonomía jurisdiccional plena, sin subordinación a la administración ordinaria ni a entes fiscalizadores externos. 
+        <br><br>
+        La duda o rechazo de los actos de esta autoridad constituye <strong>DISCRIMINACIÓN INSTITUCIONAL</strong> y una violación al <strong>DEBER AGRAVADO</strong> de protección de las Naciones Originarias. Se invoca el <strong>CONTROL DE CONVENCIONALIDAD</strong> y la doctrina de la <strong>CIDH</strong> (Corte Interamericana de Derechos Humanos), cuyo desacato genera responsabilidad directa para el servidor público ejecutor por violación a la Constitución y Tratados Internacionales.
+    </div>
+    <p style="text-align: center; margin-top: 30px; font-size: 0.7rem; color: #555;">Xochitlamapan, Veracruz • Jurisdicción Autónoma Bajo Amparo de la Ley Nacional e Internacional.</p>
 </footer>
 
 </body>
