@@ -13,49 +13,37 @@
         h1 { color: var(--jade); margin: 15px 0 5px 0; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 1px; }
         .sub { color: var(--vino); font-weight: bold; font-size: 1rem; margin-bottom: 10px; }
         
-        /* Título de Autoridad Horizontal */
         .gobierno-tit { color: var(--tierra); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; border-top: 1px solid #ddd; padding-top: 10px; display: inline-block; letter-spacing: 1px; }
 
-        /* SECCIÓN HERO - GOBIERNO E INFORMACIÓN */
         .hero { background: var(--jade); color: white; padding: 30px 20px 60px 20px; text-align: center; }
         .hero-container { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px; max-width: 900px; margin: 0 auto; }
         
         .badge-oit { background: var(--vino); color: white; padding: 8px 15px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
-        /* BOTÓN RAÍZ CON RELIEVE */
         .btn-raiz { 
-            display: inline-flex; 
-            align-items: center;
-            background: white; 
-            color: var(--jade); 
-            padding: 8px 18px;
-            border-radius: 6px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            font-size: 0.75rem; 
-            box-shadow: 0 4px 0px #ccc, 0 6px 15px rgba(0,0,0,0.2); 
-            border: 1px solid #bbb;
-            transition: 0.2s;
+            display: inline-flex; align-items: center; background: white; color: var(--jade); padding: 8px 18px; border-radius: 6px; 
+            text-decoration: none; font-weight: bold; font-size: 0.75rem; box-shadow: 0 4px 0px #ccc, 0 6px 15px rgba(0,0,0,0.2); 
+            border: 1px solid #bbb; transition: 0.2s;
         }
         .btn-raiz:hover { transform: translateY(-2px); box-shadow: 0 6px 0px #bbb, 0 8px 20px rgba(0,0,0,0.2); }
-        .btn-raiz:active { transform: translateY(2px); box-shadow: 0 1px 0px #bbb; }
         .btn-raiz span { font-size: 1.1rem; margin-right: 8px; }
 
-        /* TEXTO DINÁMICO HERO */
-        .hero h2 { font-weight: normal; font-size: 1.25rem; opacity: 0.95; margin-top: 25px; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.4; }
+        .hero h2 { font-weight: normal; font-size: 1.25rem; opacity: 0.95; margin-top: 25px; line-height: 1.4; }
 
-        /* GRID DE SERVICIOS - MANTIENE PROPORCIÓN ORIGINAL */
         .grid { max-width: 1100px; margin: -40px auto 50px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; padding: 0 20px; }
         .boton { background: white; padding: 35px 20px; border-radius: 15px; text-align: center; text-decoration: none; color: var(--tierra); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
         .boton:hover { transform: translateY(-8px); border-color: var(--vino); box-shadow: 0 15px 30px rgba(99,17,35,0.15); }
         .boton h3 { color: var(--vino); margin: 15px 0 10px 0; font-size: 1.1rem; }
         .boton p { font-size: 0.8rem; margin: 0; color: #666; line-height: 1.4; }
 
-        /* FOOTER CON JURISPRUDENCIA 2024-2025 */
+        /* FOOTER CON BLOQUE DE CONSTITUCIONALIDAD */
         footer { background: var(--vino); color: #fff; padding: 60px 40px; text-align: justify; font-size: 0.8rem; line-height: 1.7; border-top: 10px solid var(--jade); }
         .legal-header { color: #fff; font-weight: bold; text-align: center; display: block; margin-bottom: 25px; font-size: 1.1rem; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 15px; }
-        .warning-box { border: 1px solid rgba(255,255,255,0.3); padding: 30px; border-radius: 8px; background: rgba(0,0,0,0.15); }
+        .warning-box { border: 1px solid rgba(255,255,255,0.3); padding: 30px; border-radius: 8px; background: rgba(0,0,0,0.15); position: relative; }
         .cite { color: #fff; font-weight: bold; text-decoration: underline; background: rgba(0,0,0,0.1); padding: 0 3px; }
+        
+        /* LINK MÁS INFORMACIÓN */
+        .more-info { display: block; margin-top: 20px; color: #add8e6; text-decoration: underline; font-size: 0.75rem; text-align: right; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -70,53 +58,27 @@
 <div class="hero">
     <div class="hero-container">
         <div class="badge-oit">ART. 2° CPEUM • CONVENIO 169 OIT</div>
-        
-        <a href="historia.html" class="btn-raiz">
-            <span>🌱</span> NOSOTROS: RAÍCES Y COSMOVISIÓN
-        </a>
+        <a href="historia.html" class="btn-raiz"><span>🌱</span> NOSOTROS: RAÍCES Y COSMOVISIÓN</a>
     </div>
-    <!-- NUEVA FRASE SOLICITADA -->
     <h2>Plataforma Digital de Gobierno, Información y Trámites Jurisdiccionales</h2>
 </div>
 
 <div class="grid">
-    <a href="verificar.html?doc=LIC" class="boton">
-        <span style="font-size: 3rem;">📜</span>
-        <h3>MOVILIDAD</h3>
-        <p>Certificación de Pericia Vehicular y Licencias Jurisdiccionales.</p>
-    </a>
-    
-    <a href="identidad.html" class="boton">
-        <span style="font-size: 3rem;">🆔</span>
-        <h3>IDENTIDAD</h3>
-        <p>Cédulas IDCC, Registro Civil y Padrón Originario.</p>
-    </a>
-    
-    <a href="hacienda.html" class="boton">
-        <span style="font-size: 3rem;">🏦</span>
-        <h3>HACIENDA</h3>
-        <p>CIEC (RFC Autónomo) y Personalidad Económica Originaria.</p>
-    </a>
-    
-    <a href="leyes.html" class="boton">
-        <span style="font-size: 3rem;">⚖️</span>
-        <h3>MARCO LEGAL</h3>
-        <p>Constitución, Códigos y Precedentes SCJN.</p>
-    </a>
-    
-    <a href="miembros.html" class="boton">
-        <span style="font-size: 3rem;">🔐</span>
-        <h3>MIEMBROS</h3>
-        <p>Acceso Restringido: Circulares y Minutas de Asamblea.</p>
-    </a>
+    <a href="verificar.html?doc=LIC" class="boton"><h3>📜 MOVILIDAD</h3><p>Licencias Jurisdiccionales de Conducir.</p></a>
+    <a href="identidad.html" class="boton"><h3>🆔 IDENTIDAD</h3><p>Cédulas IDCC y Registros Jurisdiccionales.</p></a>
+    <a href="hacienda.html" class="boton"><h3>🏦 HACIENDA</h3><p>CIEC y Personalidad Económica Originaria.</p></a>
+    <a href="leyes.html" class="boton"><h3>⚖️ MARCO LEGAL</h3><p>Constitución y Precedentes de la SCJN.</p></a>
+    <a href="miembros.html" class="boton"><h3>🔐 MIEMBROS</h3><p>Acceso Restringido Comunitario.</p></a>
 </div>
 
 <footer>
     <span class="legal-header">Mandato de Armonización y Notificación Perentoria</span>
     <div class="warning-box">
-        Se notifica a toda autoridad civil o militar que esta Jurisdicción opera bajo la <strong>SUBJETIVIDAD JURÍDICA PROPIA</strong> ratificada por la <span class="cite">SCJN AR 782/2024</span>. Conforme a la <span class="cite">Jurisprudencia 1a./J.37/2016</span> y la <span class="cite">Tesis CCCLII/2018</span>, se reconoce a esta Comunidad como un Sujeto de Derecho Público con plena autonomía.
+        Esta Jurisdicción opera bajo el <strong>AMPARO CONSTITUCIONAL</strong> emanado del Art. 2° de la CPEUM, el <strong>BLOQUE DE CONSTITUCIONALIDAD</strong> del Convenio 169 de la OIT y la <strong>PERSONALIDAD JURÍDICA ORIGINARIA</strong> ratificada por la SCJN en el <span class="cite">Amparo en Revisión 782/2024</span>. 
         <br><br>
-        Bajo el <strong>PRINCIPIO DE MAXIMIZACIÓN</strong> de Derechos Humanos y conforme al reciente <span class="cite">Amparo en Revisión 344/2025</span>, la Suprema Corte ha ordenado la garantía plena del ejercicio de autoridad indígena. Cualquier acto de molestia, duda o rechazo constituye <strong>DISCRIMINACIÓN INSTITUCIONAL</strong> y una violación directa al <strong>DEBER AGRAVADO</strong> de protección de las Naciones Originarias. Se invoca el Control de Convencionalidad (CIDH) bajo responsabilidad penal y constitucional del servidor público ejecutor.
+        Se notifica que los actos de autoridad de este Gobierno están blindados por la <span class="cite">Jurisprudencia 1a./J.37/2016</span> y el reciente <span class="cite">Amparo en Revisión 344/2025</span>, que ordena la garantía plena del ejercicio de autoridad indígena. Cualquier obstrucción constituye <strong>DISCRIMINACIÓN INSTITUCIONAL</strong> y falta grave al <strong>DEBER AGRAVADO</strong> de protección de las Naciones Originarias bajo el <strong>PRINCIPIO DE MAXIMIZACIÓN</strong>.
+        
+        <a href="leyes.html" class="more-info">Ver fundamentación jurídica detallada e interpretación constitucional →</a>
     </div>
     <div style="text-align: center; margin-top: 35px; font-size: 0.75rem; color: rgba(255,255,255,0.6); font-style: italic;">
         Xochitlamapan, Veracruz • Gobierno Originario • Territorio Soberano
