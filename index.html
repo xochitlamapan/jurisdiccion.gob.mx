@@ -17,20 +17,41 @@
         .tesis-line { color: var(--tierra); font-size: 0.75rem; font-style: italic; opacity: 0.9; }
         .personalidad { color: var(--vino); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin-top: 8px; border-top: 1px solid #ddd; padding-top: 5px; display: inline-block; }
 
-        .hero { background: var(--jade); color: white; padding: 45px 20px; text-align: center; }
-        .grid { max-width: 1100px; margin: -45px auto 50px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 0 20px; }
+        /* SECCIÓN HERO OPTIMIZADA */
+        .hero { background: var(--jade); color: white; padding: 50px 20px; text-align: center; position: relative; }
         
-        .boton { background: white; padding: 30px 15px; border-radius: 15px; text-align: center; text-decoration: none; color: var(--tierra); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
-        .boton:hover { transform: translateY(-8px); border-color: var(--vino); box-shadow: 0 15px 30px rgba(99,17,35,0.15); }
-        .boton h3 { color: var(--vino); margin: 12px 0 8px 0; font-size: 1rem; }
-        .boton p { font-size: 0.72rem; margin: 0; color: #666; line-height: 1.4; }
+        /* BOTÓN SEMILLA / RAÍZ */
+        .boton-raiz { 
+            display: inline-flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: white; 
+            color: var(--jade); 
+            width: 160px; 
+            height: 160px; 
+            border-radius: 50%; 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 0.85rem; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+            border: 4px double var(--vino);
+            margin-top: 25px;
+            transition: 0.3s;
+        }
+        .boton-raiz:hover { transform: scale(1.05); background: var(--crema); }
+        .boton-raiz span { font-size: 2.5rem; margin-bottom: 5px; }
 
-        /* FOOTER VINO TINTO CON JURISPRUDENCIA 2025 */
+        .grid { max-width: 1100px; margin: -30px auto 50px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; padding: 0 20px; }
+        .boton { background: white; padding: 25px 15px; border-radius: 15px; text-align: center; text-decoration: none; color: var(--tierra); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
+        .boton:hover { transform: translateY(-5px); border-color: var(--vino); }
+        .boton h3 { color: var(--vino); margin: 10px 0 5px 0; font-size: 0.95rem; }
+        .boton p { font-size: 0.7rem; margin: 0; color: #666; line-height: 1.3; }
+
         footer { background: var(--vino); color: #fff; padding: 60px 40px; text-align: justify; font-size: 0.78rem; line-height: 1.7; border-top: 10px solid var(--jade); }
-        .legal-header { color: #fff; font-weight: bold; text-align: center; display: block; margin-bottom: 25px; font-size: 1.1rem; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 15px; letter-spacing: 1px; }
+        .legal-header { color: #fff; font-weight: bold; text-align: center; display: block; margin-bottom: 25px; font-size: 1.1rem; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 15px; }
         .warning-box { border: 1px solid rgba(255,255,255,0.3); padding: 30px; border-radius: 8px; background: rgba(0,0,0,0.15); }
         .cite { color: #fff; font-weight: bold; text-decoration: underline; background: rgba(0,0,0,0.2); padding: 0 3px; }
-        .footer-tag { text-align: center; margin-top: 35px; font-size: 0.75rem; color: rgba(255,255,255,0.6); font-style: italic; }
     </style>
 </head>
 <body>
@@ -39,7 +60,6 @@
     <img src="logo.png" class="escudo" alt="Soberanía Xochitlamapan">
     <h1>Comunidad Indígena Xochitlamapan</h1>
     <div class="sub">JURISDICCIÓN ORIGINARIA HORIZONTAL DE LA NACIÓN MEXICANA</div>
-    
     <div class="tesis-box">
         <div class="tesis-line">Personalidad Jurídica Originaria • Precedente SCJN AR 782/2024</div>
         <div class="personalidad">Capacidad Política, Jurídica y de Autogobierno • SCJN 2025</div>
@@ -47,54 +67,34 @@
 </header>
 
 <div class="hero">
-    <div style="background: var(--vino); color: white; padding: 6px 18px; border-radius: 4px; display: inline-block; margin-bottom: 12px; font-weight: bold; font-size: 0.85rem; letter-spacing: 1px;">
+    <div style="background: var(--vino); color: white; padding: 6px 18px; border-radius: 4px; display: inline-block; margin-bottom: 10px; font-weight: bold; font-size: 0.85rem; letter-spacing: 1px;">
         ART. 2° CPEUM • CONVENIO 169 OIT
     </div>
-    <h2 style="font-weight: normal; font-size: 1.3rem; opacity: 0.9;">Plataforma Digital de Servicios y Trámites Jurisdiccionales</h2>
+    <h2 style="font-weight: normal; font-size: 1.2rem; opacity: 0.9; margin-bottom: 10px;">Plataforma Digital de Trámites Jurisdiccionales</h2>
+    
+    <!-- BOTÓN RAÍZ CIRCULAR -->
+    <a href="historia.html" class="boton-raiz">
+        <span>🌱</span>
+        NOSOTROS:<br>HISTORIA Y<br>COSMOVISIÓN
+    </a>
 </div>
 
 <div class="grid">
-    <a href="verificar.html?doc=LIC" class="boton">
-        <span style="font-size: 2.5rem;">📜</span>
-        <h3>MOVILIDAD</h3>
-        <p>Certificación de Pericia Vehicular y Licencias Jurisdiccionales.</p>
-    </a>
-    
-    <a href="identidad.html" class="boton">
-        <span style="font-size: 2.5rem;">🆔</span>
-        <h3>IDENTIDAD</h3>
-        <p>Cédulas IDCC, Registro Civil y Padrón Originario.</p>
-    </a>
-    
-    <a href="hacienda.html" class="boton">
-        <span style="font-size: 2.5rem;">🏦</span>
-        <h3>HACIENDA</h3>
-        <p>CIEC (RFC Autónomo) y Capacidad Económica Sin Subordinación.</p>
-    </a>
-    
-    <a href="leyes.html" class="boton">
-        <span style="font-size: 2.5rem;">⚖️</span>
-        <h3>MARCO LEGAL</h3>
-        <p>Constitución, Códigos y Precedentes SCJN 2025.</p>
-    </a>
-    
-    <a href="miembros.html" class="boton">
-        <span style="font-size: 2.5rem;">🔐</span>
-        <h3>MIEMBROS</h3>
-        <p>Acceso Restringido: Circulares y Minutas de Asamblea.</p>
-    </a>
+    <a href="verificar.html?doc=LIC" class="boton"><h3>📜 MOVILIDAD</h3><p>Licencias y Pericia Vehicular.</p></a>
+    <a href="identidad.html" class="boton"><h3>🆔 IDENTIDAD</h3><p>Cédulas IDCC y Registros.</p></a>
+    <a href="hacienda.html" class="boton"><h3>🏦 HACIENDA</h3><p>CIEC y Autonomía Económica.</p></a>
+    <a href="leyes.html" class="boton"><h3>⚖️ MARCO LEGAL</h3><p>Constitución y Tesis SCJN.</p></a>
+    <a href="miembros.html" class="boton"><h3>🔐 MIEMBROS</h3><p>Acceso Restringido Interno.</p></a>
 </div>
 
 <footer>
     <span class="legal-header">Mandato de Armonización y Notificación Perentoria</span>
     <div class="warning-box">
-        Se notifica a toda autoridad civil o militar que esta Jurisdicción opera bajo la <strong>SUBJETIVIDAD JURÍDICA PROPIA</strong> ratificada por la <span class="cite">SCJN en el Amparo en Revisión 782/2024</span>, reconociendo a esta Comunidad como un Sujeto de Derecho Público con personalidad jurídica inalienable. 
+        Se notifica que esta Jurisdicción opera bajo la <strong>SUBJETIVIDAD JURÍDICA PROPIA</strong> ratificada por la <span class="cite">SCJN AR 782/2024</span>. Bajo el reciente <span class="cite">Amparo en Revisión 344/2025</span>, la Suprema Corte ha ordenado la garantía plena del <strong>AUTOGOBIERNO</strong> indígena. 
         <br><br>
-        Bajo el <strong>PRINCIPIO DE MAXIMIZACIÓN</strong> y conforme al reciente <span class="cite">Amparo en Revisión 344/2025</span>, la Suprema Corte ha ordenado la garantía plena del <strong>AUTOGOBIERNO</strong> indígena, estableciendo que la falta de legislación secundaria no es impedimento para el ejercicio de la autonomía horizontal. 
-        <br><br>
-        Cualquier acto de molestia, duda o rechazo de estos documentos amparados en la <span class="cite">Jurisprudencia 1a./J.37/2016</span> y la <span class="cite">Tesis CCCLII/2018</span> constituye <strong>DISCRIMINACIÓN INSTITUCIONAL</strong> y desacato al <strong>DEBER AGRAVADO</strong> de protección de las Naciones Originarias. Se invoca el Control de Convencionalidad (CIDH): la autoridad ejecutora asume responsabilidad penal por violación directa a la Constitución y Tratados Internacionales ante el pleno ejercicio de esta soberanía preexistente.
+        Cualquier acto de molestia o rechazo injustificado basado en la falta de subordinación administrativa externa, constituye <strong>DISCRIMINACIÓN INSTITUCIONAL</strong> y desacato al <strong>DEBER AGRAVADO</strong> de protección conforme al <strong>PRINCIPIO DE MAXIMIZACIÓN</strong> y la <strong>OBLIGACIÓN DE ARMONIZACIÓN</strong> (Jurisprudencia 1a./J.37/2016). La autoridad ejecutora asume responsabilidad penal y constitucional directa.
     </div>
-    <div class="footer-tag">
+    <div style="text-align: center; margin-top: 35px; font-size: 0.75rem; color: rgba(255,255,255,0.6); font-style: italic;">
         Xochitlamapan, Veracruz • Jurisdicción Autónoma • Personalidad Originaria SCJN 2025
     </div>
 </footer>
