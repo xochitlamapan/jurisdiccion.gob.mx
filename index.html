@@ -3,175 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jurisdicción Originaria - Xochitlamapan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Gobierno Originario Xochitlamapan</title>
     <style>
-        :root {
-            --vino: #631123;
-            --jade: #0b4a3f;
-            --oro: #b38e5d;
-            --crema: #f4f1ea;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--crema);
-            color: #333;
-        }
-
-        /* --- NUEVO: SISTEMA DE BANDERAS (Aislado para no romper nada) --- */
-        .contenedor-banderas {
+        :root { --jade: #0B4A3F; --vino: #631123; --tierra: #5D4037; --crema: #F4F1EA; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--crema); color: var(--tierra); position: relative; }
+        
+        /* --- ESTILO DE BANDERAS (ÚNICO AÑADIDO) --- */
+        .capa-banderas {
             position: absolute;
             top: 0;
-            left: 0;
             width: 100%;
-            pointer-events: none;
-            z-index: 999;
+            height: 150px;
+            pointer-events: none; /* Para que puedas hacer clic en lo que esté debajo */
+            z-index: 100;
             overflow: hidden;
         }
         .bandera-img {
             position: absolute;
             top: 0;
-            width: 200px; /* Tamaño en PC */
+            width: 180px; /* Tamaño en PC */
             height: auto;
-            opacity: 0.85;
+            opacity: 0.9;
         }
-        .izq { left: 0; }
-        .der { right: 0; transform: scaleX(-1); } /* Efecto Espejo */
+        .b-izq { left: 0; }
+        .b-der { right: 0; transform: scaleX(-1); } /* Efecto espejo */
 
-        @media (max-width: 600px) {
-            .bandera-img { width: 110px; } /* Más pequeña en celular */
+        @media (max-width: 768px) {
+            .bandera-img { width: 100px; } /* Más pequeña en celular */
         }
-        /* ----------------------------------------------------------- */
+        /* ----------------------------------------- */
 
-        header {
-            background-color: white;
-            padding: 30px 20px;
-            text-align: center;
-            border-bottom: 8px solid var(--jade);
-            position: relative;
-        }
+        header { background: white; border-bottom: 6px solid var(--vino); padding: 30px 15px; text-align: center; position: relative; z-index: 10; }
+        .escudo { width: 120px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
+        h1 { color: var(--jade); margin: 15px 0 5px 0; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 1px; }
+        .sub { color: var(--vino); font-weight: bold; font-size: 1rem; margin-bottom: 10px; }
+        
+        .gobierno-tit { color: var(--tierra); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; border-top: 1px solid #ddd; padding-top: 10px; display: inline-block; letter-spacing: 1px; }
 
-        .logo-gob {
-            width: 140px;
-            height: auto;
-            margin-bottom: 10px;
-        }
+        .hero { background: var(--jade); color: white; padding: 30px 20px 60px 20px; text-align: center; }
+        .hero-container { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px; max-width: 900px; margin: 0 auto; }
+        
+        .badge-oit { background: var(--vino); color: white; padding: 8px 15px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
-        header h1 {
-            font-family: 'Cinzel', serif;
-            color: var(--vino);
-            margin: 0;
-            font-size: 1.8rem;
-            text-transform: uppercase;
+        .btn-raiz { 
+            display: inline-flex; align-items: center; background: white; color: var(--jade); padding: 8px 18px; border-radius: 6px; 
+            text-decoration: none; font-weight: bold; font-size: 0.75rem; box-shadow: 0 4px 0px #ccc, 0 6px 15px rgba(0,0,0,0.2); 
+            border: 1px solid #bbb; transition: 0.2s;
         }
+        .btn-raiz:hover { transform: translateY(-2px); box-shadow: 0 6px 0px #bbb, 0 8px 20px rgba(0,0,0,0.2); }
+        .btn-raiz span { font-size: 1.1rem; margin-right: 8px; }
 
-        header p {
-            color: var(--jade);
-            font-weight: bold;
-            margin: 5px 0 0;
-            letter-spacing: 1px;
-        }
+        .hero h2 { font-weight: normal; font-size: 1.25rem; opacity: 0.95; margin-top: 25px; line-height: 1.4; }
 
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
+        .grid { max-width: 1100px; margin: -40px auto 50px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; padding: 0 20px; }
+        .boton { background: white; padding: 35px 20px; border-radius: 15px; text-align: center; text-decoration: none; color: var(--tierra); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
+        .boton:hover { transform: translateY(-8px); border-color: var(--vino); box-shadow: 0 15px 30px rgba(99,17,35,0.15); }
+        .boton h3 { color: var(--vino); margin: 15px 0 10px 0; font-size: 1.1rem; }
+        .boton p { font-size: 0.8rem; margin: 0; color: #666; line-height: 1.4; }
 
-        .hero-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 40px;
-        }
-
-        .nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .btn-nav {
-            background-color: var(--jade);
-            color: white;
-            padding: 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-family: 'Cinzel', serif;
-            transition: 0.3s;
-            border-bottom: 4px solid #062a24;
-        }
-
-        .btn-nav:hover {
-            background-color: var(--vino);
-            border-bottom: 4px solid #3d0a15;
-            transform: translateY(-2px);
-        }
-
-        footer {
-            background-color: #1a1a1a;
-            color: #ddd;
-            padding: 40px 20px;
-            margin-top: 60px;
-            font-size: 0.75rem;
-            line-height: 1.6;
-            text-align: justify;
-        }
-
-        .legal-content {
-            max-width: 900px;
-            margin: auto;
-        }
-
-        .alerta-penal {
-            color: #ff4444;
-            font-weight: bold;
-            border: 1px solid #ff4444;
-            padding: 10px;
-            display: block;
-            margin-bottom: 15px;
-            text-align: center;
-            text-transform: uppercase;
-        }
+        /* FOOTER DE MÁXIMA AUTORIDAD */
+        footer { background: var(--vino); color: #fff; padding: 60px 40px; text-align: justify; font-size: 0.85rem; line-height: 1.7; border-top: 10px solid var(--jade); }
+        .legal-header { color: #fff; font-weight: bold; text-align: center; display: block; margin-bottom: 25px; font-size: 1.2rem; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 15px; letter-spacing: 1px; }
+        .warning-box { border: 1px solid rgba(255,255,255,0.4); padding: 35px; border-radius: 8px; background: rgba(0,0,0,0.2); position: relative; }
+        .cite { color: #fff; font-weight: bold; text-decoration: underline; background: rgba(0,0,0,0.1); padding: 0 2px; }
+        .more-info { display: block; margin-top: 25px; color: #add8e6; text-decoration: underline; font-size: 0.8rem; text-align: right; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <!-- CAPA DE BANDERAS -->
-    <div class="contenedor-banderas">
-        <img src="bandera.png" class="bandera-img izq">
-        <img src="bandera.png" class="bandera-img der">
+<!-- CAPA DE BANDERAS -->
+<div class="capa-banderas">
+    <img src="bandera.png" class="bandera-img b-izq">
+    <img src="bandera.png" class="bandera-img b-der">
+</div>
+
+<header>
+    <img src="logo.png" class="escudo" alt="Gobierno Xochitlamapan">
+    <h1>Comunidad Indígena Xochitlamapan</h1>
+    <div class="sub">JURISDICCIÓN ORIGINARIA HORIZONTAL DE LA NACIÓN MEXICANA</div>
+    <div class="gobierno-tit">Gobierno con Capacidades Políticas, Jurídicas y de Ordenamiento de Territorio</div>
+</header>
+
+<div class="hero">
+    <div class="hero-container">
+        <div class="badge-oit">ART. 2° CPEUM • CONVENIO 169 OIT</div>
+        <a href="historia.html" class="btn-raiz"><span>🌱</span> NOSOTROS: RAÍCES Y COSMOVISIÓN</a>
     </div>
+    <h2>Plataforma Digital de Gobierno, Información y Trámites Jurisdiccionales</h2>
+</div>
 
-    <header>
-        <img src="logo.png" alt="Escudo Soberano" class="logo-gob">
-        <h1>Gobierno de Xochitlamapan</h1>
-        <p>Jurisdicción Originaria Horizontal | Art. 2° CPEUM</p>
-    </header>
+<div class="grid">
+    <a href="verificar.html?doc=LIC" class="boton"><h3>📜 MOVILIDAD</h3><p>Licencias Jurisdiccionales de Conducir.</p></a>
+    <a href="identidad.html" class="boton"><h3>🆔 IDENTIDAD</h3><p>Cédulas IDCC y Registros Jurisdiccionales.</p></a>
+    <a href="hacienda.html" class="boton"><h3>🏦 HACIENDA</h3><p>CIEC y Personalidad Económica Originaria.</p></a>
+    <a href="leyes.html" class="boton"><h3>⚖️ MARCO LEGAL</h3><p>Constitución y Precedentes de la SCJN.</p></a>
+    <a href="miembros.html" class="boton"><h3>🔐 MIEMBROS</h3><p>Acceso Restringido Comunitario.</p></a>
+</div>
 
-    <div class="container">
-        <div class="hero-text">
-            Bienvenido al Portal de Soberanía Digital. Este sistema garantiza la autonomía jurídica y administrativa de la Nación Originaria Xochitlamapan bajo el control de convencionalidad.
-        </div>
-
-        <div class="nav-links">
-            <a href="verificar.html" class="btn-nav">🔍 VERIFICADOR UNIVERSAL (QR)</a>
-            <a href="leyes.html" class="btn-nav">⚖️ CÁTEDRA JURÍDICA Y LEYES</a>
-            <a href="miembros.html" class="btn-nav">🔐 ACCESO A ÁREA DE MIEMBROS</a>
-        </div>
+<footer>
+    <span class="legal-header">Mandato de Armonización y Notificación Perentoria</span>
+    <div class="warning-box">
+        Esta Jurisdicción opera bajo el <strong>AMPARO CONSTITUCIONAL</strong> emanado del Art. 2° de la CPEUM, el <strong>BLOQUE DE CONSTITUCIONALIDAD</strong> del Convenio 169 de la OIT y la <strong>PERSONALIDAD JURÍDICA ORIGINARIA</strong> ratificada por la SCJN en el <span class="cite">Amparo en Revisión 782/2024</span>. 
+        <br><br>
+        Se notifica que cualquier acto de molestia, rechazo, falta de armonización o similar, constituye un acto de <strong>DISCRIMINACIÓN INSTITUCIONAL</strong> y una falta grave al <strong>DEBER AGRAVADO</strong> de protección de las Naciones Originarias bajo el <strong>PRINCIPIO DE MAXIMIZACIÓN</strong> de protección de nuestras Jurisdicciones Originarias. 
+        <br><br>
+        Se invoca el <strong>CONTROL DE CONVENCIONALIDAD</strong> bajo el <strong>Art. 133 Constitucional</strong> y la doctrina imperativa de la <strong>CIDH</strong>, bajo <strong>RESPONSABILIDAD PENAL Y CONSTITUCIONAL</strong> del servidor público civil o militar ejecutor en caso de omisión, desconocimiento o desacato a este Gobierno Originario y sus Precedentes Jurisprudenciales (<span class="cite">SCJN AR 344/2025</span> y <span class="cite">Jurisprudencia 1a./J.37/2016</span>).
+        
+        <a href="leyes.html" class="more-info">EXAMINAR FUNDAMENTACIÓN JURÍDICA DETALLADA →</a>
     </div>
-
-    <footer>
-        <div class="legal-content">
-            <span class="alerta-penal">Advertencia de Responsabilidad Penal para Autoridades</span>
-            <p><strong>CONTROL DE CONVENCIONALIDAD:</strong> De acuerdo con el Artículo 133 de la CPEUM y la jurisprudencia de la SCJN (Amparos 782/2024 y 344/2025), la personalidad jurídica de la Comunidad Xochitlamapan como Sujeto de Derecho Público es inalienable. Cualquier autoridad civil o militar que ignore los documentos aquí validados incurre en desacato agravado. La ignorancia de la ley indígena no exime de responsabilidad ante tribunales internacionales y federales.</p>
-            <p style="text-align: center; color: var(--oro); margin-top: 20px;">© 2024-2025 Jurisdicción Originaria Xochitlamapan.</p>
-        </div>
-    </footer>
+    <div style="text-align: center; margin-top: 35px; font-size: 0.8rem; color: rgba(255,255,255,0.7); font-style: italic;">
+        Xochitlamapan, Veracruz • Gobierno Originario • Territorio Soberano
+    </div>
+</footer>
 
 </body>
 </html>
