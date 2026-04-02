@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal de Acceso Jurisdiccional - Xochitlamapan</title>
+    <style>
+        :root { --jade: #0B4A3F; --vino: #631123; --crema: #F4F1EA; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--crema); margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 40px; border-radius: 10px; border-top: 15px solid var(--vino); box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        h1 { color: var(--jade); font-size: 1.5rem; text-transform: uppercase; text-align: center; }
+        .instruccion { background: #f9f9f9; padding: 20px; border-bottom: 1px solid #ddd; margin-bottom: 30px; font-size: 0.9rem; text-align: justify; }
+        .documento-card { display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee; padding: 20px; margin-bottom: 15px; border-radius: 8px; }
+        .doc-info h3 { margin: 0; color: var(--vino); font-size: 1.1rem; }
+        .doc-info p { margin: 5px 0 0 0; font-size: 0.8rem; color: #666; }
+        .btn-descarga { background: var(--jade); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 0.85rem; }
+        .footer-legal { margin-top: 40px; font-size: 0.75rem; color: #777; border-top: 1px solid #eee; padding-top: 20px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Repositorio Documental para Autoridades</h1>
+        <div class="instruccion">
+            Este portal de acceso controlado se habilita exclusivamente para servidores públicos del Estado Mexicano, con el fin de facilitar la <strong>Armonización Jurisdiccional</strong> y el reconocimiento mutuo conforme al Art. 2° de la CPEUM y el Convenio 169 de la OIT. Los documentos aquí contenidos poseen fe pública originaria.
+        </div>
+
+        <!-- DOCUMENTO 1 -->
+        <div class="documento-card">
+            <div class="doc-info">
+                <h3>Constitución Comunitaria 2024</h3>
+                <p>Texto íntegro y codificado de la norma suprema de Xochitlamapan.</p>
+            </div>
+            <a href="constitucion_xoc_v1_secreta.pdf" class="btn-descarga">DESCARGAR PDF</a>
+        </div>
+
+        <!-- DOCUMENTO 2 -->
+        <div class="documento-card">
+            <div class="doc-info">
+                <h3>Código Civil Consuetudinario (CCC)</h3>
+                <p>Regulación de obligaciones, contratos y personalidad jurídica.</p>
+            </div>
+            <a href="codigo_civil_xoc_v1_secreto.pdf" class="btn-descarga">DESCARGAR PDF</a>
+        </div>
+
+        <!-- DOCUMENTO 3 -->
+        <div class="documento-card">
+            <div class="doc-info">
+                <h3>Reglamento de Movilidad y Pericia</h3>
+                <p>Estándar técnico de certificación de conductores.</p>
+            </div>
+            <a href="reglamento_movilidad_secreto.pdf" class="btn-descarga">DESCARGAR PDF</a>
+        </div>
+
+        <div class="footer-legal">
+            Gobierno Originario de Xochitlamapan, Veracruz.<br>
+            La descarga y uso de estos documentos implica la aceptación del Protocolo de Reconocimiento de Jurisdicción Indígena.
+            <br><br>
+            <a href="index.html" style="color: #631123;">← Salir del Repositorio Oficial</a>
+        </div>
+    </div>
+</body>
+</html>
