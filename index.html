@@ -19,62 +19,45 @@
             font-family: 'Montserrat', sans-serif;
             background-color: var(--crema);
             color: #333;
-            overflow-x: hidden;
         }
 
-        /* --- SISTEMA DE BANDERAS EN ESQUINA --- */
-        .flag-container {
+        /* --- NUEVO: SISTEMA DE BANDERAS (Aislado para no romper nada) --- */
+        .contenedor-banderas {
             position: absolute;
             top: 0;
+            left: 0;
             width: 100%;
-            height: 180px;
-            pointer-events: none; /* No interfiere con clics */
-            z-index: 10;
+            pointer-events: none;
+            z-index: 999;
             overflow: hidden;
         }
-
-        .flag-img {
+        .bandera-img {
             position: absolute;
-            top: -10px;
-            width: 220px; /* Tamaño optimizado para PC */
+            top: 0;
+            width: 200px; /* Tamaño en PC */
             height: auto;
-            opacity: 0.9;
+            opacity: 0.85;
         }
+        .izq { left: 0; }
+        .der { right: 0; transform: scaleX(-1); } /* Efecto Espejo */
 
-        .flag-left {
-            left: -10px;
+        @media (max-width: 600px) {
+            .bandera-img { width: 110px; } /* Más pequeña en celular */
         }
+        /* ----------------------------------------------------------- */
 
-        .flag-right {
-            right: -10px;
-            transform: scaleX(-1); /* Efecto Espejo */
-        }
-
-        /* Ajuste para Celulares */
-        @media (max-width: 768px) {
-            .flag-img {
-                width: 120px; /* Más pequeñas en celular para no tapar el logo */
-            }
-            .flag-container {
-                height: 100px;
-            }
-        }
-
-        /* --- HEADER Y CONTENIDO --- */
         header {
             background-color: white;
-            padding: 40px 20px;
+            padding: 30px 20px;
             text-align: center;
-            border-bottom: 5px solid var(--jade);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-bottom: 8px solid var(--jade);
             position: relative;
-            z-index: 20; /* Por encima de las banderas */
         }
 
         .logo-gob {
-            width: 150px;
+            width: 140px;
             height: auto;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         header h1 {
@@ -82,132 +65,111 @@
             color: var(--vino);
             margin: 0;
             font-size: 1.8rem;
-            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         header p {
             color: var(--jade);
             font-weight: bold;
-            margin-top: 5px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
+            margin: 5px 0 0;
+            letter-spacing: 1px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 40px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            padding: 0 20px;
+            text-align: center;
         }
 
         .hero-text {
-            text-align: center;
-            line-height: 1.8;
             font-size: 1.1rem;
-            color: #444;
+            line-height: 1.7;
+            margin-bottom: 40px;
         }
 
-        /* Botones de Navegación */
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .nav-card {
-            background: var(--jade);
+        .btn-nav {
+            background-color: var(--jade);
             color: white;
-            padding: 25px;
+            padding: 20px;
             text-decoration: none;
-            border-radius: 8px;
-            text-align: center;
-            transition: 0.3s;
-            border-bottom: 4px solid var(--vino);
-        }
-
-        .nav-card:hover {
-            transform: translateY(-5px);
-            background: var(--vino);
-        }
-
-        .nav-card h3 {
-            margin: 0 0 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
             font-family: 'Cinzel', serif;
+            transition: 0.3s;
+            border-bottom: 4px solid #062a24;
         }
 
-        /* Footer Legal Artillería Pesada */
+        .btn-nav:hover {
+            background-color: var(--vino);
+            border-bottom: 4px solid #3d0a15;
+            transform: translateY(-2px);
+        }
+
         footer {
-            background: #1a1a1a;
-            color: #ccc;
+            background-color: #1a1a1a;
+            color: #ddd;
             padding: 40px 20px;
             margin-top: 60px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             line-height: 1.6;
-        }
-
-        .legal-box {
-            max-width: 1000px;
-            margin: auto;
             text-align: justify;
-            border-top: 1px solid #444;
-            padding-top: 20px;
         }
 
-        .warning-red {
-            color: #ff4d4d;
+        .legal-content {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .alerta-penal {
+            color: #ff4444;
             font-weight: bold;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 10px;
-            text-align: center;
-            border: 1px solid #ff4d4d;
+            border: 1px solid #ff4444;
             padding: 10px;
+            display: block;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-    <!-- Capa de Banderas -->
-    <div class="flag-container">
-        <img src="bandera.png" class="flag-img flag-left" alt="Soberanía Nacional">
-        <img src="bandera.png" class="flag-img flag-right" alt="Soberanía Nacional">
+    <!-- CAPA DE BANDERAS -->
+    <div class="contenedor-banderas">
+        <img src="bandera.png" class="bandera-img izq">
+        <img src="bandera.png" class="bandera-img der">
     </div>
 
     <header>
-        <img src="logo.png" alt="Escudo Xochitlamapan" class="logo-gob">
+        <img src="logo.png" alt="Escudo Soberano" class="logo-gob">
         <h1>Gobierno de Xochitlamapan</h1>
         <p>Jurisdicción Originaria Horizontal | Art. 2° CPEUM</p>
     </header>
 
     <div class="container">
         <div class="hero-text">
-            <p>Bienvenido al Portal Oficial de la <strong>Nación Xochitlamapan</strong>. Este espacio digital constituye una extensión de nuestra soberanía territorial y jurídica, fundamentada en el Control de Convencionalidad y el Derecho Humano a la Autodeterminación.</p>
+            Bienvenido al Portal de Soberanía Digital. Este sistema garantiza la autonomía jurídica y administrativa de la Nación Originaria Xochitlamapan bajo el control de convencionalidad.
         </div>
 
-        <div class="nav-grid">
-            <a href="verificar.html" class="nav-card">
-                <h3>🔍 Verificador</h3>
-                <p>Validación de Licencias, Credenciales y Cédulas Fiscales.</p>
-            </a>
-            <a href="leyes.html" class="nav-card">
-                <h3>⚖️ Cátedra Jurídica</h3>
-                <p>Constitución 2024 y Código Civil Consuetudinario.</p>
-            </a>
-            <a href="miembros.html" class="nav-card">
-                <h3>🔐 Área Reservada</h3>
-                <p>Acceso exclusivo para integrantes y autoridades.</p>
-            </a>
+        <div class="nav-links">
+            <a href="verificar.html" class="btn-nav">🔍 VERIFICADOR UNIVERSAL (QR)</a>
+            <a href="leyes.html" class="btn-nav">⚖️ CÁTEDRA JURÍDICA Y LEYES</a>
+            <a href="miembros.html" class="btn-nav">🔐 ACCESO A ÁREA DE MIEMBROS</a>
         </div>
     </div>
 
     <footer>
-        <div class="legal-box">
-            <span class="warning-red">Advertencia de Responsabilidad Penal</span>
-            <p><strong>FUNDAMENTO DE SOBERANÍA:</strong> Toda autoridad civil o militar que ignore la personalidad jurídica de este Sujeto de Derecho Público, ratificada por la SCJN (Amparos 782/2024 y 344/2025), incurre en una violación directa al Artículo 133 Constitucional y al Control de Convencionalidad (Convenio 169 OIT). El desconocimiento de la ley no exime de responsabilidad. Cualquier acto de molestia sin mandamiento escrito de autoridad jurisdiccional originaria competente será procesado bajo el Deber Agravado y el Principio de Maximización de Derechos Indígenas.</p>
-            <p style="text-align: center; color: var(--oro);">© 2024-2025 Jurisdicción Originaria Xochitlamapan - Veracruz, México.</p>
+        <div class="legal-content">
+            <span class="alerta-penal">Advertencia de Responsabilidad Penal para Autoridades</span>
+            <p><strong>CONTROL DE CONVENCIONALIDAD:</strong> De acuerdo con el Artículo 133 de la CPEUM y la jurisprudencia de la SCJN (Amparos 782/2024 y 344/2025), la personalidad jurídica de la Comunidad Xochitlamapan como Sujeto de Derecho Público es inalienable. Cualquier autoridad civil o militar que ignore los documentos aquí validados incurre en desacato agravado. La ignorancia de la ley indígena no exime de responsabilidad ante tribunales internacionales y federales.</p>
+            <p style="text-align: center; color: var(--oro); margin-top: 20px;">© 2024-2025 Jurisdicción Originaria Xochitlamapan.</p>
         </div>
     </footer>
 
