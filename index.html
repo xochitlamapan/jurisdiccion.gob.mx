@@ -6,36 +6,11 @@
     <title>Gobierno Originario Xochitlamapan</title>
     <style>
         :root { --jade: #0B4A3F; --vino: #631123; --tierra: #5D4037; --crema: #F4F1EA; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--crema); color: var(--tierra); position: relative; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--crema); color: var(--tierra); }
         
-        /* --- ESTILO DE BANDERAS (ÚNICO AÑADIDO) --- */
-        .capa-banderas {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            height: 150px;
-            pointer-events: none; /* Para que puedas hacer clic en lo que esté debajo */
-            z-index: 100;
-            overflow: hidden;
-        }
-        .bandera-img {
-            position: absolute;
-            top: 0;
-            width: 180px; /* Tamaño en PC */
-            height: auto;
-            opacity: 0.9;
-        }
-        .b-izq { left: 0; }
-        .b-der { right: 0; transform: scaleX(-1); } /* Efecto espejo */
-
-        @media (max-width: 768px) {
-            .bandera-img { width: 100px; } /* Más pequeña en celular */
-        }
-        /* ----------------------------------------- */
-
-        header { background: white; border-bottom: 6px solid var(--vino); padding: 30px 15px; text-align: center; position: relative; z-index: 10; }
+        header { background: white; border-bottom: 6px solid var(--vino); padding: 30px 15px; text-align: center; }
         .escudo { width: 120px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
-        h1 { color: var(--jade); margin: 15px 0 5px 0; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 1px; }
+        h1 { color: var(--jade); margin: 10px 0 5px 0; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 1px; }
         .sub { color: var(--vino); font-weight: bold; font-size: 1rem; margin-bottom: 10px; }
         
         .gobierno-tit { color: var(--tierra); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; border-top: 1px solid #ddd; padding-top: 10px; display: inline-block; letter-spacing: 1px; }
@@ -61,7 +36,6 @@
         .boton h3 { color: var(--vino); margin: 15px 0 10px 0; font-size: 1.1rem; }
         .boton p { font-size: 0.8rem; margin: 0; color: #666; line-height: 1.4; }
 
-        /* FOOTER DE MÁXIMA AUTORIDAD */
         footer { background: var(--vino); color: #fff; padding: 60px 40px; text-align: justify; font-size: 0.85rem; line-height: 1.7; border-top: 10px solid var(--jade); }
         .legal-header { color: #fff; font-weight: bold; text-align: center; display: block; margin-bottom: 25px; font-size: 1.2rem; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 15px; letter-spacing: 1px; }
         .warning-box { border: 1px solid rgba(255,255,255,0.4); padding: 35px; border-radius: 8px; background: rgba(0,0,0,0.2); position: relative; }
@@ -70,12 +44,6 @@
     </style>
 </head>
 <body>
-
-<!-- CAPA DE BANDERAS -->
-<div class="capa-banderas">
-    <img src="bandera.png" class="bandera-img b-izq">
-    <img src="bandera.png" class="bandera-img b-der">
-</div>
 
 <header>
     <img src="logo.png" class="escudo" alt="Gobierno Xochitlamapan">
@@ -93,11 +61,37 @@
 </div>
 
 <div class="grid">
-    <a href="verificar.html?doc=LIC" class="boton"><h3>📜 MOVILIDAD</h3><p>Licencias Jurisdiccionales de Conducir.</p></a>
-    <a href="identidad.html" class="boton"><h3>🆔 IDENTIDAD</h3><p>Cédulas IDCC y Registros Jurisdiccionales.</p></a>
-    <a href="hacienda.html" class="boton"><h3>🏦 HACIENDA</h3><p>CIEC y Personalidad Económica Originaria.</p></a>
-    <a href="leyes.html" class="boton"><h3>⚖️ MARCO LEGAL</h3><p>Constitución y Precedentes de la SCJN.</p></a>
-    <a href="miembros.html" class="boton"><h3>🔐 MIEMBROS</h3><p>Acceso Restringido Comunitario.</p></a>
+    <!-- AHORA APUNTA A LA PÁGINA DEL DEPARTAMENTO DE MOVILIDAD -->
+    <a href="movilidad.html" class="boton">
+        <span style="font-size: 3rem;">📜</span>
+        <h3>MOVILIDAD</h3>
+        <p>Departamento de Seguridad Vial y Certificación de Pericia.</p>
+    </a>
+    
+    <!-- AHORA APUNTA A LA PÁGINA DEL DEPARTAMENTO DE IDENTIDAD -->
+    <a href="identidad.html" class="boton">
+        <span style="font-size: 3rem;">🆔</span>
+        <h3>IDENTIDAD</h3>
+        <p>Departamento de Registro Civil y Personalidad Originaria.</p>
+    </a>
+    
+    <a href="hacienda.html" class="boton">
+        <span style="font-size: 3rem;">🏦</span>
+        <h3>HACIENDA</h3>
+        <p>CIEC y Personalidad Económica Originaria.</p>
+    </a>
+    
+    <a href="leyes.html" class="boton">
+        <span style="font-size: 3rem;">⚖️</span>
+        <h3>MARCO LEGAL</h3>
+        <p>Constitución y Precedentes de la SCJN.</p>
+    </a>
+    
+    <a href="miembros.html" class="boton">
+        <span style="font-size: 3rem;">🔐</span>
+        <h3>MIEMBROS</h3>
+        <p>Acceso Restringido Comunitario.</p>
+    </a>
 </div>
 
 <footer>
@@ -105,9 +99,9 @@
     <div class="warning-box">
         Esta Jurisdicción opera bajo el <strong>AMPARO CONSTITUCIONAL</strong> emanado del Art. 2° de la CPEUM, el <strong>BLOQUE DE CONSTITUCIONALIDAD</strong> del Convenio 169 de la OIT y la <strong>PERSONALIDAD JURÍDICA ORIGINARIA</strong> ratificada por la SCJN en el <span class="cite">Amparo en Revisión 782/2024</span>. 
         <br><br>
-        Se notifica que cualquier acto de molestia, rechazo, falta de armonización o similar, constituye un acto de <strong>DISCRIMINACIÓN INSTITUCIONAL</strong> y una falta grave al <strong>DEBER AGRAVADO</strong> de protección de las Naciones Originarias bajo el <strong>PRINCIPIO DE MAXIMIZACIÓN</strong> de protección de nuestras Jurisdicciones Originarias. 
+        Se notifica que cualquier acto de molestia, rechazo, falta de armonización o similar, constituye un acto de <strong>DISCRIMINACIÓN INSTITUCIONAL</strong> y una falta grave al <strong>DEBER AGRAVADO</strong> de protección de las Naciones Originarias bajo el <strong>PRINCIPIO DE MAXIMIZACIÓN</strong>. 
         <br><br>
-        Se invoca el <strong>CONTROL DE CONVENCIONALIDAD</strong> bajo el <strong>Art. 133 Constitucional</strong> y la doctrina imperativa de la <strong>CIDH</strong>, bajo <strong>RESPONSABILIDAD PENAL Y CONSTITUCIONAL</strong> del servidor público civil o militar ejecutor en caso de omisión, desconocimiento o desacato a este Gobierno Originario y sus Precedentes Jurisprudenciales (<span class="cite">SCJN AR 344/2025</span> y <span class="cite">Jurisprudencia 1a./J.37/2016</span>).
+        Se invoca el <strong>CONTROL DE CONVENCIONALIDAD</strong> bajo el <strong>Art. 133 Constitucional</strong> bajo <strong>RESPONSABILIDAD PENAL Y CONSTITUCIONAL</strong> del servidor público civil o militar ejecutor en caso de omisión o desacato a este Gobierno Originario y sus Precedentes Jurisprudenciales (<span class="cite">SCJN AR 344/2025</span>).
         
         <a href="leyes.html" class="more-info">EXAMINAR FUNDAMENTACIÓN JURÍDICA DETALLADA →</a>
     </div>
