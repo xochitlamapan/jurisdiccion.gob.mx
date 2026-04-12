@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacienda Pública | Xochitlamapan</title>
+    <style>
+        /* COLORES OFICIALES XOCHITLAMAPAN */
+        :root {
+            --verde-jade: #0B4A3F;
+            --vino-tinto: #631123;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Helvetica, Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            color: #1a1a1a;
+        }
+
+        /* CABECERA (ESTILO MOVILIDAD) */
+        .header {
+            background-color: white;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            border-bottom: 4px solid var(--verde-jade);
+        }
+
+        .bandera {
+            position: absolute;
+            top: 0;
+            width: 110px;
+        }
+        .bandera-izq { left: 0; }
+        .bandera-der { right: 0; transform: scaleX(-1); }
+
+        .btn-portal {
+            display: inline-block;
+            padding: 6px 15px;
+            border: 1.5px solid var(--verde-jade);
+            color: var(--verde-jade);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        /* CUERPO DEL DOCUMENTO */
+        .main-container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 35px 50px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 4px;
+        }
+
+        h1.titulo-doc {
+            color: var(--verde-jade);
+            font-size: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .banner-intro {
+            background-color: #fdfdfd;
+            border-left: 4px solid var(--vino-tinto);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-weight: 600;
+            font-size: 15px;
+            color: #222;
+        }
+
+        h2.seccion-h {
+            color: var(--vino-tinto);
+            font-size: 15px;
+            text-transform: uppercase;
+            margin-top: 30px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 5px;
+        }
+
+        p {
+            text-align: justify;
+            line-height: 1.6;
+            font-size: 14.5px;
+        }
+
+        /* CAJÓN CIEC DETALLADO */
+        .ciec-cert {
+            margin: 30px auto;
+            max-width: 500px;
+            border: 2px solid var(--verde-jade);
+            background: linear-gradient(to bottom, #ffffff, #f9fbfb);
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            text-align: center;
+            box-shadow: inset 0 0 10px rgba(11, 74, 63, 0.05);
+        }
+
+        .ciec-cert::before {
+            content: "";
+            position: absolute;
+            top: 4px; left: 4px; right: 4px; bottom: 4px;
+            border: 1px solid rgba(11, 74, 63, 0.2);
+            border-radius: 5px;
+            pointer-events: none;
+        }
+
+        .ciec-cert h3 {
+            margin: 0;
+            font-size: 30px;
+            color: var(--verde-jade);
+            letter-spacing: 10px;
+            font-weight: bold;
+        }
+
+        .ciec-sub {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--verde-jade);
+            letter-spacing: 2px;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        /* FOOTER CLON DEL INDEX */
+        footer {
+            background-color: var(--vino-tinto);
+            color: white;
+            padding: 40px 20px 20px 20px;
+            text-align: center;
+        }
+
+        .footer-wrap {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .mandato-header {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .mandato-box {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: justify;
+            font-size: 13px;
+            line-height: 1.5;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .mandato-box strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .link-footer {
+            display: block;
+            text-align: right;
+            margin-top: 15px;
+            color: #ddd;
+            text-decoration: none;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .link-footer:hover { color: white; }
+
+        .firma-final {
+            margin-top: 40px;
+            font-size: 11px;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 15px;
+        }
+
+        ul { font-size: 14px; padding-left: 20px; }
+        li { margin-bottom: 8px; text-align: justify; }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="bandera.png" class="bandera bandera-izq" alt="Bandera">
+        <img src="bandera.png" class="bandera bandera-der" alt="Bandera">
+        <a href="index.html" class="btn-portal">🏠 PORTAL DE GOBIERNO</a>
+    </div>
+
+    <div class="main-container">
+        <h1 class="titulo-doc">Hacienda Pública y Arca Comunal</h1>
+        
+        <div class="banner-intro">
+            Hacia una Coordinación Pluricultural: El Modelo de Haciendas Hermanas
+        </div>
+
+        <h2 class="seccion-h">I. Exposición de Soberanía Económica</h2>
+        <p>El Gobierno de la Comunidad Consuetudinaria Originaria Xochitlamapan, en ejercicio de su libre determinación y autonomía consagrada en el Artículo 2º de la Constitución Política de los Estados Unidos Mexicanos y el Convenio 169 de la OIT, y plenamente ratificado por la Suprema Corte de Justicia de la Nación (SCJN) en las sentencias definitivas y firmes de los Amparos en Revisión 782/2024 y 344/2025, expone ante los Poderes de la Unión, instituciones bancarias y particulares, que nuestra jurisdicción económica es preexistente, autónoma y no subordinada.</p>
+        <p>Como Sujeto de Derecho Público, nuestra autoridad emana de la Verdad Jurídica Histórica y del Bloque de Constitucionalidad (Art. 133 CPEUM), lo que nos sitúa en una relación de horizontalidad política con las dependencias del Poder Ejecutivo Federal.</p>
+
+        <h2 class="seccion-h">II. El Principio de "Haciendas Hermanas"</h2>
+        <p>Bajo nuestro principio constitucional interno de relación horizontal, Xochitlamapan establece el concepto de Haciendas Hermanas. Bajo esta premisa, se reconoce que:</p>
+        <ul>
+            <li>La Hacienda Pública Federal (SAT) y la Hacienda Pública Indígena (Xochitlamapan) son entidades de la misma jerarquía constitucional dentro de un Estado Pluricultural.</li>
+            <li>Una Hacienda Pública emanada del Derecho Positivo no posee facultades jerárquicas, fiscalizadoras ni de tutela sobre una Hacienda Pública Originaria regida por el Derecho Consuetudinario.</li>
+        </ul>
+
+        <h2 class="seccion-h">III. La Antinomia Estructural e Inaplicabilidad</h2>
+        <p>Exponemos que la exigencia de registros administrativos del derecho positivo (como el RFC) para la operatividad de nuestra Comunidad constituye una <strong>Antinomia Jurídica Insalvable</strong>. Un sistema diseñado para el lucro y la fiscalización individual (SAT) no puede ser aplicado a un sistema de vida colectiva, autosustentable, de autodeterminación con capacidades políticas, jurídicas y consuetudinarias plenamente reconocidas.</p>
+        <p>Aceptar dicha imposición generaría una antinomia normativa y violaría las Sentencias Definitivas de la SCJN (2025) y el Convenio 169 de la OIT.</p>
+
+        <h2 class="seccion-h">IV. La CIEC: Interfaz de Armonización</h2>
+        
+        <div class="ciec-cert">
+            <div class="ciec-sub">Gobierno Originario Xochitlamapan</div>
+            <h3>C I E C</h3>
+            <div class="ciec-sub">Clave de Identidad Económica Consuetudinaria</div>
+        </div>
+
+        <p>La CIEC es nuestro instrumento soberano de identificación económica. Posee una estructura técnica compatible con los sistemas nacionales, permitiendo la interoperabilidad sin sacrificar nuestra autonomía consuetudinaria.</p>
+
+        <h2 class="seccion-h">V. Inembargabilidad del Arca Comunal</h2>
+        <p>Se notifica que los recursos y bienes que integran el Arca Comunal están protegidos por el régimen de propiedad social e indígena, siendo inalienables e inembargables. Cualquier acto de molestia administrativa contra el patrimonio comunitario será tratado como una violación a la soberanía indígena.</p>
+    </div>
+
+    <footer>
+        <div class="footer-wrap">
+            <div class="mandato-header">MANDATO DE ARMONIZACIÓN Y NOTIFICACIÓN PERENTORIA</div>
+            
+            <div class="mandato-box">
+                <p>Esta Jurisdicción opera bajo el <strong>AMPARO CONSTITUCIONAL</strong> emanado del Art. 2° de la CPEUM, el <strong>BLOQUE DE CONSTITUCIONALIDAD</strong> del Convenio 169 de la OIT y la <strong>PERSONALIDAD JURÍDICA ORIGINARIA</strong> ratificada por la SCJN en el <strong>Amparo en Revisión 782/2024</strong>.</p>
+                
+                <p>Se notifica que cualquier acto de molestia, rechazo, falta de armonización o similar, constituye un acto de <strong>DISCRIMINACIÓN INSTITUCIONAL</strong> y una falta grave al <strong>DEBER AGRAVADO</strong> de protección de las Naciones Originarias bajo el <strong>PRINCIPIO DE MAXIMIZACIÓN</strong> de protección de nuestras Jurisdicciones Originarias.</p>
+                
+                <p>Se invoca el <strong>CONTROL DE CONVENCIONALIDAD</strong> bajo el <strong>Art. 133 Constitucional</strong> y la doctrina imperativa de la <strong>CIDH</strong>, bajo <strong>RESPONSABILIDAD PENAL Y CONSTITUCIONAL</strong> del servidor público civil o militar ejecutor en caso de omisión, desconocimiento o desacato a este Gobierno Originario y sus Precedentes Jurisprudenciales (<strong>SCJN AR 344/2025</strong> y <strong>Jurisprudencia 1a./J.37/2016</strong>).</p>
+                
+                <a href="leyes.html" class="link-footer">EXAMINAR FUNDAMENTACIÓN JURÍDICA DETALLADA →</a>
+            </div>
+
+            <div class="firma-final">
+                Xochitlamapan, Veracruz • Gobierno de Jurisdicción preexistente • Sujeto de Derecho Público y libre Determinación
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
