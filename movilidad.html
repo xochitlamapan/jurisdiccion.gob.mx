@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movilidad y Pericia - Xochitlamapan</title>
+    <style>
+        :root { --jade: #0B4A3F; --vino: #631123; --tierra: #5D4037; --crema: #F4F1EA; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--crema); color: var(--tierra); margin: 0; padding: 0; }
+        
+        header { background: white; border-bottom: 4px solid var(--vino); padding: 15px; position: relative; overflow: hidden; text-align: center; }
+        .bandera-img { position: absolute; top: 0; width: 80px; opacity: 0.8; }
+        .izq { left: 0; }
+        .der { right: 0; transform: scaleX(-1); }
+        header a { color: var(--jade); text-decoration: none; font-weight: bold; font-size: 0.8rem; position: relative; z-index: 2; border: 1px solid var(--jade); padding: 5px 10px; border-radius: 4px; }
+
+        .container { max-width: 850px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-top: 8px solid var(--jade); }
+        h1 { color: var(--jade); text-transform: uppercase; font-size: 1.3rem; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        
+        /* BLOQUE INFORMATIVO RÁPIDO */
+        .resumen-inicial { background: #fdfaf4; padding: 20px; border-left: 5px solid var(--jade); margin: 20px 0; font-size: 1rem; line-height: 1.5; }
+
+        .btn-verificar { display: block; background: var(--jade); color: white; padding: 20px; text-decoration: none; border-radius: 8px; font-weight: bold; text-align: center; margin: 30px 0; box-shadow: 0 4px 10px rgba(11,74,63,0.3); font-size: 1.1rem; }
+        .btn-verificar:hover { background: var(--vino); }
+
+        /* CÁTEDRA JURÍDICA DETALLADA */
+        .catedra-inexpugnable { background: #fff; border: 1px solid #ddd; padding: 30px; border-radius: 8px; font-size: 0.9rem; line-height: 1.7; color: #444; }
+        .catedra-inexpugnable h2 { color: var(--vino); font-size: 1.1rem; margin-top: 0; text-transform: uppercase; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .cite { font-weight: bold; color: #000; }
+        
+        footer { text-align: center; padding: 30px; font-size: 0.75rem; color: #999; }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="bandera.png" class="bandera-img izq">
+    <img src="bandera.png" class="bandera-img der">
+    <a href="index.html">🏠 PORTAL DE GOBIERNO</a>
+</header>
+
+<div class="container">
+    <h1>Jurisdicción de Movilidad y Pericia</h1>
+    
+    <div class="resumen-inicial">
+        Esta oficina certifica la aptitud técnica y física de los integrantes del Pueblo Originario de Xochitlamapan para la operación de vehículos motorizados, garantizando la seguridad vial en plano de horizontalidad con el Estado Mexicano.
+    </div>
+
+    <a href="verificar_lic.html" class="btn-verificar">🔗 INICIAR VALIDADOR DE PERICIA VIAL</a>
+
+    <div class="catedra-inexpugnable">
+        <h2>Fundamentación Jurisdiccional</h2>
+        <p>La facultad de emitir certificaciones de movilidad no es una concesión administrativa, sino una manifestación de la <strong>Personalidad Jurídica Originaria</strong> preexistente a la formación del Estado Mexicano. Conforme al <span class="cite">Amparo en Revisión 344/2025</span>, la SCJN ha establecido que el autogobierno incluye la capacidad de ordenamiento territorial y civil sin necesidad de subordinación a leyes secundarias del poder ejecutivo ordinario.</p>
+        
+        <p><strong>Estándar Internacional:</strong> Nuestras licencias cumplen con los requisitos de la <span class="cite">Convención de Viena sobre la Circulación Vial (1968)</span>, asegurando que el portador posee la pericia necesaria para transitar por cualquier vía de comunicación. Negar la validez de este documento basándose exclusivamente en su origen étnico-jurisdiccional constituye una violación al <span class="cite">Art. 1° y 2° de la CPEUM</span> y al <span class="cite">Convenio 169 de la OIT</span>.</p>
+        
+        <p><strong>Aviso a la Autoridad:</strong> En virtud del <strong>Principio de Maximización</strong>, la autoridad receptora está obligada a la interpretación más favorable de esta norma originaria. Cualquier acto de molestia derivado del desconocimiento de este registro genera responsabilidad penal personal por discriminación institucional.</p>
+    </div>
+</div>
+
+<footer>
+    Xochitlamapan, Veracruz • Gobierno de Jurisdicción Preexistente
+</footer>
+
+</body>
+</html>
