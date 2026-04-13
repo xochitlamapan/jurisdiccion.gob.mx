@@ -121,4 +121,66 @@
         if (!query) return;
         let q = query.trim().toUpperCase();
 
-        // Si el escaneo devuelve una
+        // Si el escaneo devuelve una URL completa, extraemos solo el folio
+        if (q.includes("FOLIO=")) {
+            q = q.split("FOLIO=")[1].split("&")[0];
+        }
+
+        // 1. Buscar por CUA
+        if (REGISTRO_IDENTIDAD[q]) {
+            mostrarCard(REGISTRO_IDENTIDAD[q], q);
+            return;
+        }
+
+        // 2. Buscar por CURC o CIEC
+        const encontrado = Object.keys(REGISTRO_IDENTIDAD).find(key => 
+            REGISTRO_IDENTIDAD[key].curc.toUpperCase() === q || 
+            REGISTRO_IDENTIDAD[key].ciec.toUpperCase() === q
+        );
+
+        if (encontrado) {
+            mostrarCard(REGISTRO_IDENTIDAD[encontrado], encontrado);
+        } else {
+            alert("Registro no encontrado.");
+        }
+    }
+
+    // --- MOTOR AUTOMÁTICO (CORREGIDO) ---
+    // Esto hace que al abrir el link del QR, la tarjeta salga SOLA e INSTANTÁNEA
+    window.onload = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Si hay un folio en la URL
+        if (urlParams.has('folio')) {
+            buscarProcesar(urlParams.get('folio'));
+        } 
+        // Si es formato antiguo (n=Nombre...)
+        else if (urlParams.has('n')) {
+            mostrarCard({
+                n: urlParams.get('n').replace(/-/g, ' '),
+                curc: urlParams.get('curc') || "N/A",
+                ciec: urlParams.get('ciec') || "N/A",
+                sn: urlParams.get('sn') || "N/A",
+                t: urlParams.get('t') || "Integrante Originario"
+            }, "V1-ARCHIVO");
+        }
+    };
+
+    function validarManual() {
+        const val = document.getElementById('manualInput').value;
+        buscarProcesar(val);
+    }
+
+    function iniciarCamara() {
+        document.getElementById('reader').style.display = 'block';
+        const scanner = new Html5Qrcode("reader");
+        scanner.start({ facingMode: "environment" }, { fps: 15, qrbox: 250 }, 
+        (text) => {
+            // En lugar de recargar la página, procesamos el código AQUÍ MISMO
+            buscarProcesar(text);
+            scanner.stop();
+        }).catch(err => alert("Error de cámara o equipo sin cámara."));
+    }
+</script>
+</body>
+</html>
