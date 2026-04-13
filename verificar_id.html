@@ -18,16 +18,14 @@
         
         .container { max-width: 500px; margin: 20px auto; padding: 15px; }
         
-        /* Caja de búsqueda (Se oculta si hay éxito) */
         .opciones-box { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; border: 1px solid #ddd; }
         
         input { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ccc; border-radius: 5px; box-sizing: border-box; text-align: center; font-size: 1rem; text-transform: uppercase; }
-        .btn-accion { background: var(--jade); color: white; padding: 12px; width: 100%; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; }
+        .btn-accion { background: var(--jade); color: white; padding: 12px; width: 100%; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; font-size: 0.8rem; }
         .btn-vino { background: var(--vino); }
         
         #reader { width: 100%; border-radius: 10px; overflow: hidden; border: 2px solid var(--jade) !important; display: none; margin-top: 15px; background: #000; }
         
-        /* TARJETA DE RESULTADO - MÁXIMA PRIORIDAD */
         .card { background: white; border-radius: 15px; box-shadow: 0 15px 50px rgba(0,0,0,0.3); border: 1px solid #ddd; overflow: hidden; display: none; margin-top: 5px; animation: aparece 0.3s ease-out; }
         @keyframes aparece { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
@@ -40,8 +38,10 @@
         
         .legal-footer { background: #fdfaf0; border-left: 4px solid var(--oro); padding: 15px; margin: 15px; font-size: 0.7rem; text-align: justify; line-height: 1.4; color: #444; }
 
-        /* Mensaje de carga */
-        #loading { display: none; color: var(--jade); font-weight: bold; margin: 20px; }
+        .btn-group { display: flex; gap: 10px; padding: 0 15px 15px; }
+        .btn-flex { flex: 1; margin-bottom: 0; }
+        
+        #loading { display: none; color: var(--jade); font-weight: bold; margin: 20px; text-align: center; }
     </style>
 </head>
 <body>
@@ -54,9 +54,8 @@
 </header>
 
 <div class="container">
-    <div id="loading">PROCESANDO VALIDACIÓN...</div>
+    <div id="loading">PROCESANDO VALIDACIÓN SOBERANA...</div>
 
-    <!-- Buscador (Se ocultará automáticamente si hay folio) -->
     <div id="selector-box" class="opciones-box">
         <h3 style="color: var(--vino); margin-top: 0; font-size: 1rem;">CONSULTA MANUAL</h3>
         <input type="text" id="manualInput" placeholder="CUA, CIEC O CURC">
@@ -65,7 +64,7 @@
         <div id="reader"></div>
     </div>
 
-    <!-- TARJETA DE RESULTADO (AUTODISPARADA) -->
+    <!-- TARJETA DE RESULTADO -->
     <div id="resultado-card" class="card">
         <div class="status-header">✅ DOCUMENTO VERIFICADO</div>
         <div class="card-header">
@@ -79,8 +78,9 @@
             <strong>FUNDAMENTO:</strong> Jurisdicción Originaria ratificada por la SCJN (Sentencias 782/2024 y 344/2025). Inmunidad Diplomática Cultural Activa.
         </div>
         
-        <div style="padding: 15px;">
-            <button class="btn-accion" style="background:#666;" onclick="window.location.href='verificar_id.html'">NUEVA CONSULTA</button>
+        <div class="btn-group">
+            <button class="btn-accion btn-flex" style="background:#666;" onclick="window.location.href='verificar_id.html'">NUEVA CONSULTA</button>
+            <button class="btn-accion btn-flex" onclick="window.location.href='index.html'">🏠 IR AL PORTAL</button>
         </div>
     </div>
 </div>
@@ -106,7 +106,7 @@
         document.getElementById('selector-box').style.display = 'none';
         document.getElementById('resultado-card').style.display = 'block';
         
-        // Si entramos por folio, podemos ocultar el header para que se vea más directo
+        // Ocultar header solo si entramos por QR para que la tarjeta sea la protagonista
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('folio')) {
             document.getElementById('main-header').style.display = 'none';
@@ -117,7 +117,6 @@
         if (!textoRecibido) return;
         const q = textoRecibido.trim().toUpperCase();
 
-        // Búsqueda inteligente (encuentra el folio aunque el QR esté incompleto o traiga URL)
         let encontrado = false;
         for (let cua in REGISTRO_IDENTIDAD) {
             if (q.includes(cua) || cua.includes(q)) {
@@ -128,7 +127,6 @@
         }
 
         if (!encontrado) {
-            // Intentar por CURC o CIEC
             const id = Object.keys(REGISTRO_IDENTIDAD).find(k => q.includes(REGISTRO_IDENTIDAD[k].curc) || q.includes(REGISTRO_IDENTIDAD[k].ciec));
             if (id) {
                 mostrarCard(REGISTRO_IDENTIDAD[id], id);
@@ -138,15 +136,13 @@
         }
     }
 
-    // --- EL DISPARADOR AUTOMÁTICO ---
-    // Se ejecuta inmediatamente al abrir la página
+    // AUTO-ARRANQUE
     (function() {
         const urlParams = new URLSearchParams(window.location.search);
         const folio = urlParams.get('folio');
         if (folio) {
             document.getElementById('loading').style.display = 'block';
-            // Pequeña espera de 100ms para asegurar que el DOM está listo
-            setTimeout(() => { buscarProcesar(folio); }, 100);
+            setTimeout(() => { buscarProcesar(folio); }, 150);
         }
     })();
 
