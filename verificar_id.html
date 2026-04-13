@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro Civil Digital - Xochitlamapan</title>
+    <title>Validación Jurisdiccional - Xochitlamapan</title>
     <link rel="icon" type="image/png" href="logo.png">
     <script src="https://unpkg.com/html5-qrcode"></script>
     <style>
@@ -13,7 +13,6 @@
         .bandera-img { position: absolute; top: 0; width: 80px; opacity: 0.8; }
         .izq { left: 0; }
         .der { right: 0; transform: scaleX(-1); }
-        header a { color: var(--jade); text-decoration: none; font-weight: bold; font-size: 0.8rem; position: relative; z-index: 2; border: 1px solid var(--jade); padding: 5px 10px; border-radius: 4px; }
 
         .container { max-width: 500px; margin: 20px auto; padding: 15px; }
         .opciones-box { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
@@ -25,10 +24,11 @@
         
         .card { background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); border: 1px solid #ddd; overflow: hidden; display: none; margin-top: 20px; }
         .card-header { background: var(--vino); color: white; padding: 20px; text-align: center; }
-        .status-id { background: #2e7d32; color: white; padding: 12px; font-weight: bold; text-align: center; }
-        .row { border-bottom: 1px solid #eee; padding: 10px 15px; display: flex; justify-content: space-between; font-size: 0.9rem; }
-        .label { color: #888; text-transform: uppercase; font-weight: bold; font-size: 0.7rem; }
+        .status-id { background: #2e7d32; color: white; padding: 12px; font-weight: bold; text-align: center; text-transform: uppercase; }
+        .row { border-bottom: 1px solid #eee; padding: 12px 15px; display: flex; justify-content: space-between; font-size: 0.9rem; }
+        .label { color: #888; text-transform: uppercase; font-weight: bold; font-size: 0.7rem; text-align: left; }
         .value { font-weight: bold; color: #111; text-align: right; word-break: break-all; margin-left: 10px; }
+        .legal-footer { background: #fdfaf0; border-left: 4px solid var(--oro); padding: 15px; margin: 15px; font-size: 0.7rem; text-align: justify; }
     </style>
 </head>
 <body>
@@ -36,33 +36,32 @@
 <header>
     <img src="bandera.png" class="bandera-img izq">
     <img src="bandera.png" class="bandera-img der">
-    <a href="identidad.html">← VOLVER A IDENTIDAD</a>
+    <img src="logo.png" style="width:70px;">
+    <h1 style="color:var(--jade); font-size:1.2rem; margin:5px 0;">VALIDACIÓN SOBERANA</h1>
 </header>
 
 <div class="container">
     <div id="selector-box" class="opciones-box">
-        <h3 style="color: var(--vino); margin-top: 0;">CONSULTA JURISDICCIONAL</h3>
-        <p style="font-size: 0.8rem; color: #666;">Búsqueda por CUA, CIEC, CURC o Escaneo QR</p>
-        
-        <input type="text" id="manualInput" placeholder="INGRESE CLAVE DE BÚSQUEDA">
-        <button class="btn-accion" onclick="validarManual()">CONSULTAR REGISTRO</button>
+        <h3 style="color: var(--vino); margin-top: 0;">CONSULTA DE IDENTIDAD</h3>
+        <input type="text" id="manualInput" placeholder="INGRESE CUA, CIEC O CURC">
+        <button class="btn-accion" onclick="buscarProcesar(document.getElementById('manualInput').value)">VERIFICAR REGISTRO</button>
         <button class="btn-accion" style="background:var(--jade);" onclick="iniciarCamara()">📷 USAR CÁMARA</button>
-        
         <div id="reader"></div>
     </div>
 
+    <!-- TARJETA DE RESULTADO -->
     <div id="resultado-card" class="card">
         <div class="card-header">
             <h3 style="margin:0; font-size: 1rem;">IDENTIDAD INTEGRAL VALIDADA</h3>
             <small>Gobierno Originario Xochitlamapan</small>
         </div>
         <div class="status-id">✅ DOCUMENTO VÁLIDO</div>
-        <div class="content" style="padding: 10px 0;">
+        <div class="content">
             <div id="datos-id"></div>
-            <div style="background: #fdfaf0; border-left: 4px solid var(--oro); padding: 10px; margin: 15px; font-size: 0.7rem; text-align: justify;">
+            <div class="legal-footer">
                 <strong>ESTATUS JURÍDICO:</strong> Personalidad Jurídica Originaria ratificada por la SCJN (AR 782/2024). Inmunidad Diplomática Cultural Activa.
             </div>
-            <div style="padding: 0 15px 15px;">
+            <div style="padding: 15px;">
                 <button class="btn-accion" style="background:#666;" onclick="location.href='verificar_id.html'">NUEVA CONSULTA</button>
             </div>
         </div>
@@ -70,8 +69,15 @@
 </div>
 
 <script>
-    // --- PADRÓN DE LA COMUNIDAD (TODOS LOS MIEMBROS) ---
+    // --- PADRÓN DE LA COMUNIDAD (BASE DE DATOS COMPLETA) ---
     const REGISTRO_IDENTIDAD = {
+        "XOC-IDCC-2025-F1-P07-CL0002-A-0001": {
+            n: "Kuikakoatl, Roberto",
+            curc: "KUXR800123HDFKXB95",
+            ciec: "KUXR800123X16",
+            sn: "419131",
+            t: "Integrante Originario Diplomático Cultural"
+        },
         "XOC-IDCC-2024-F1-P05-CL0002-A-0002": {
             n: "Macani Tlamatini, Jose",
             curc: "MATJ750826HOCCLS92",
@@ -92,13 +98,6 @@
             ciec: "00000000000",
             sn: "419121",
             t: "Integrante Originario Diplomático Cultural"
-        },
-        "XOC-IDCC-2025-F1-P07-CL0002-A-0001": {
-            n: "Kuikakoatl, Roberto",
-            curc: "KUXR800123HDFKXB95",
-            ciec: "KUXR800123X16",
-            sn: "419131",
-            t: "Integrante Originario Diplomático Cultural"
         }
     };
 
@@ -109,79 +108,60 @@
             <div class="row"><div class="label">CUA:</div><div class="value">${cua}</div></div>
             <div class="row"><div class="label">CURC:</div><div class="value">${data.curc}</div></div>
             <div class="row"><div class="label">CIEC:</div><div class="value">${data.ciec}</div></div>
-            <div class="row"><div class="label">Serie Holograma:</div><div class="value">${data.sn}</div></div>
+            <div class="row"><div class="label">Holograma:</div><div class="value">${data.sn}</div></div>
             <div class="row"><div class="label">Estatus:</div><div class="value">${data.t}</div></div>
             <div class="row"><div class="label">Vigencia:</div><div class="value">PERMANENTE</div></div>
         `;
         document.getElementById('resultado-card').style.display = 'block';
         document.getElementById('selector-box').style.display = 'none';
-        if (window.scannerActivo) window.scannerActivo.stop();
+        if (window.scanner) window.scanner.stop();
     }
 
-    // --- FUNCIÓN DE BÚSQUEDA INTELIGENTE (ELIMINA EL ERROR DE "NO ENCONTRADO") ---
+    // --- BUSCADOR UNIVERSAL (ELIMINA EL ERROR DE "REGISTRO NO ENCONTRADO") ---
     function buscarProcesar(textoRecibido) {
         if (!textoRecibido) return;
-        const texto = textoRecibido.trim().toUpperCase();
+        const bruto = textoRecibido.trim().toUpperCase();
 
-        // 1. ¿El texto ES exactamente un CUA de la lista?
-        if (REGISTRO_IDENTIDAD[texto]) {
-            mostrarCard(REGISTRO_IDENTIDAD[texto], texto);
-            return;
-        }
-
-        // 2. ¿El texto CONTIENE algún CUA de nuestra lista? (Para URLs de QR)
+        // 1. Intentar encontrar por CUA (Llave exacta o contenida)
+        // Esto arregla el problema si el QR trae la URL completa
         for (let cua in REGISTRO_IDENTIDAD) {
-            if (texto.includes(cua)) {
+            if (bruto.includes(cua)) {
                 mostrarCard(REGISTRO_IDENTIDAD[cua], cua);
                 return;
             }
         }
 
-        // 3. ¿El texto coincide con alguna CURC o CIEC?
-        const porDatos = Object.keys(REGISTRO_IDENTIDAD).find(key => 
-            (REGISTRO_IDENTIDAD[key].curc && REGISTRO_IDENTIDAD[key].curc.toUpperCase() === texto) || 
-            (REGISTRO_IDENTIDAD[key].ciec && REGISTRO_IDENTIDAD[key].ciec.toUpperCase() === texto)
-        );
+        // 2. Intentar encontrar por CURC o CIEC dentro de los datos
+        const claveEncontrada = Object.keys(REGISTRO_IDENTIDAD).find(key => {
+            const m = REGISTRO_IDENTIDAD[key];
+            return bruto.includes(m.curc.toUpperCase()) || bruto.includes(m.ciec.toUpperCase());
+        });
 
-        if (porDatos) {
-            mostrarCard(REGISTRO_IDENTIDAD[porDatos], porDatos);
+        if (claveEncontrada) {
+            mostrarCard(REGISTRO_IDENTIDAD[claveEncontrada], claveEncontrada);
             return;
         }
 
-        alert("REGISTRO NO LOCALIZADO\nVerifique la clave o el código QR.");
+        alert("REGISTRO NO LOCALIZADO\nVerifique la clave o escanee nuevamente.");
     }
 
-    // --- MOTOR AUTOMÁTICO AL CARGAR ---
+    // --- AUTO-ARRANQUE (Para el QR físico) ---
     window.onload = () => {
         const urlParams = new URLSearchParams(window.location.search);
-        // Si el link trae ?folio=... lo procesa
-        if (urlParams.has('folio')) {
-            buscarProcesar(urlParams.get('folio'));
-        } 
-        // Si no trae folio, pero trae datos V1.0 (?n=...)
-        else if (urlParams.has('n')) {
-            mostrarCard({
-                n: urlParams.get('n').replace(/-/g, ' '),
-                curc: urlParams.get('curc') || "N/A",
-                ciec: urlParams.get('ciec') || "N/A",
-                sn: urlParams.get('sn') || "N/A",
-                t: urlParams.get('t') || "Integrante Originario"
-            }, "REGISTRO V1.0");
+        // Busca cualquier parámetro que pueda traer el folio o CUA
+        const folio = urlParams.get('folio') || urlParams.get('CUA') || urlParams.get('id');
+        if (folio) {
+            buscarProcesar(folio);
         }
     };
 
-    function validarManual() {
-        const val = document.getElementById('manualInput').value;
-        buscarProcesar(val);
-    }
-
     function iniciarCamara() {
         document.getElementById('reader').style.display = 'block';
-        window.scannerActivo = new Html5Qrcode("reader");
-        window.scannerActivo.start({ facingMode: "environment" }, { fps: 15, qrbox: 250 }, 
+        window.scanner = new Html5Qrcode("reader");
+        window.scanner.start({ facingMode: "environment" }, { fps: 15, qrbox: 250 }, 
         (text) => {
             buscarProcesar(text);
-        }).catch(err => alert("Cámara no disponible."));
+        }).catch(err => alert("Error de cámara."));
     }
 </script>
 </body>
