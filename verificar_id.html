@@ -70,7 +70,7 @@
 </div>
 
 <script>
-    // --- PADRÓN DE LA COMUNIDAD (TODOS LOS MIEMBROS MANTENIDOS) ---
+    // --- PADRÓN DE LA COMUNIDAD (TODOS LOS MIEMBROS) ---
     const REGISTRO_IDENTIDAD = {
         "XOC-IDCC-2024-F1-P05-CL0002-A-0002": {
             n: "Macani Tlamatini, Jose",
@@ -115,46 +115,50 @@
         `;
         document.getElementById('resultado-card').style.display = 'block';
         document.getElementById('selector-box').style.display = 'none';
+        if (window.scannerActivo) window.scannerActivo.stop();
     }
 
-    function buscarProcesar(query) {
-        if (!query) return;
-        let q = query.trim().toUpperCase();
+    // --- FUNCIÓN DE BÚSQUEDA INTELIGENTE (ELIMINA EL ERROR DE "NO ENCONTRADO") ---
+    function buscarProcesar(textoRecibido) {
+        if (!textoRecibido) return;
+        const texto = textoRecibido.trim().toUpperCase();
 
-        // Si el escaneo devuelve una URL completa, extraemos solo el folio
-        if (q.includes("FOLIO=")) {
-            q = q.split("FOLIO=")[1].split("&")[0];
-        }
-
-        // 1. Buscar por CUA
-        if (REGISTRO_IDENTIDAD[q]) {
-            mostrarCard(REGISTRO_IDENTIDAD[q], q);
+        // 1. ¿El texto ES exactamente un CUA de la lista?
+        if (REGISTRO_IDENTIDAD[texto]) {
+            mostrarCard(REGISTRO_IDENTIDAD[texto], texto);
             return;
         }
 
-        // 2. Buscar por CURC o CIEC
-        const encontrado = Object.keys(REGISTRO_IDENTIDAD).find(key => 
-            REGISTRO_IDENTIDAD[key].curc.toUpperCase() === q || 
-            REGISTRO_IDENTIDAD[key].ciec.toUpperCase() === q
+        // 2. ¿El texto CONTIENE algún CUA de nuestra lista? (Para URLs de QR)
+        for (let cua in REGISTRO_IDENTIDAD) {
+            if (texto.includes(cua)) {
+                mostrarCard(REGISTRO_IDENTIDAD[cua], cua);
+                return;
+            }
+        }
+
+        // 3. ¿El texto coincide con alguna CURC o CIEC?
+        const porDatos = Object.keys(REGISTRO_IDENTIDAD).find(key => 
+            (REGISTRO_IDENTIDAD[key].curc && REGISTRO_IDENTIDAD[key].curc.toUpperCase() === texto) || 
+            (REGISTRO_IDENTIDAD[key].ciec && REGISTRO_IDENTIDAD[key].ciec.toUpperCase() === texto)
         );
 
-        if (encontrado) {
-            mostrarCard(REGISTRO_IDENTIDAD[encontrado], encontrado);
-        } else {
-            alert("Registro no encontrado.");
+        if (porDatos) {
+            mostrarCard(REGISTRO_IDENTIDAD[porDatos], porDatos);
+            return;
         }
+
+        alert("REGISTRO NO LOCALIZADO\nVerifique la clave o el código QR.");
     }
 
-    // --- MOTOR AUTOMÁTICO (CORREGIDO) ---
-    // Esto hace que al abrir el link del QR, la tarjeta salga SOLA e INSTANTÁNEA
+    // --- MOTOR AUTOMÁTICO AL CARGAR ---
     window.onload = () => {
         const urlParams = new URLSearchParams(window.location.search);
-        
-        // Si hay un folio en la URL
+        // Si el link trae ?folio=... lo procesa
         if (urlParams.has('folio')) {
             buscarProcesar(urlParams.get('folio'));
         } 
-        // Si es formato antiguo (n=Nombre...)
+        // Si no trae folio, pero trae datos V1.0 (?n=...)
         else if (urlParams.has('n')) {
             mostrarCard({
                 n: urlParams.get('n').replace(/-/g, ' '),
@@ -162,7 +166,7 @@
                 ciec: urlParams.get('ciec') || "N/A",
                 sn: urlParams.get('sn') || "N/A",
                 t: urlParams.get('t') || "Integrante Originario"
-            }, "V1-ARCHIVO");
+            }, "REGISTRO V1.0");
         }
     };
 
@@ -173,13 +177,11 @@
 
     function iniciarCamara() {
         document.getElementById('reader').style.display = 'block';
-        const scanner = new Html5Qrcode("reader");
-        scanner.start({ facingMode: "environment" }, { fps: 15, qrbox: 250 }, 
+        window.scannerActivo = new Html5Qrcode("reader");
+        window.scannerActivo.start({ facingMode: "environment" }, { fps: 15, qrbox: 250 }, 
         (text) => {
-            // En lugar de recargar la página, procesamos el código AQUÍ MISMO
             buscarProcesar(text);
-            scanner.stop();
-        }).catch(err => alert("Error de cámara o equipo sin cámara."));
+        }).catch(err => alert("Cámara no disponible."));
     }
 </script>
 </body>
