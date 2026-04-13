@@ -28,7 +28,7 @@
         .status-id { background: #2e7d32; color: white; padding: 12px; font-weight: bold; text-align: center; }
         .row { border-bottom: 1px solid #eee; padding: 10px 15px; display: flex; justify-content: space-between; font-size: 0.9rem; }
         .label { color: #888; text-transform: uppercase; font-weight: bold; font-size: 0.7rem; }
-        .value { font-weight: bold; color: #111; text-align: right; }
+        .value { font-weight: bold; color: #111; text-align: right; word-break: break-all; margin-left: 10px; }
     </style>
 </head>
 <body>
@@ -63,13 +63,14 @@
                 <strong>ESTATUS JURÍDICO:</strong> Personalidad Jurídica Originaria ratificada por la SCJN (AR 782/2024). Inmunidad Diplomática Cultural Activa.
             </div>
             <div style="padding: 0 15px 15px;">
-                <button class="btn-accion" style="background:#666;" onclick="location.reload()">NUEVA CONSULTA</button>
+                <button class="btn-accion" style="background:#666;" onclick="location.href='verificar_id.html'">NUEVA CONSULTA</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
+    // --- PADRÓN DE LA COMUNIDAD (TODOS LOS MIEMBROS MANTENIDOS) ---
     const REGISTRO_IDENTIDAD = {
         "XOC-IDCC-2024-F1-P05-CL0002-A-0002": {
             n: "Macani Tlamatini, Jose",
@@ -92,14 +93,13 @@
             sn: "419121",
             t: "Integrante Originario Diplomático Cultural"
         },
-	"XOC-IDCC-2025-F1-P07-CL0002-A-0001": {
+        "XOC-IDCC-2025-F1-P07-CL0002-A-0001": {
             n: "Kuikakoatl, Roberto",
             curc: "KUXR800123HDFKXB95",
             ciec: "KUXR800123X16",
             sn: "419131",
             t: "Integrante Originario Diplomático Cultural"
-        },
-
+        }
     };
 
     function mostrarCard(data, cua) {
@@ -109,62 +109,16 @@
             <div class="row"><div class="label">CUA:</div><div class="value">${cua}</div></div>
             <div class="row"><div class="label">CURC:</div><div class="value">${data.curc}</div></div>
             <div class="row"><div class="label">CIEC:</div><div class="value">${data.ciec}</div></div>
-            <div class="row"><div class="label">Holograma:</div><div class="value">${data.sn}</div></div>
-            <div class="row"><div class="label">Categoría:</div><div class="value">${data.t}</div></div>
+            <div class="row"><div class="label">Serie Holograma:</div><div class="value">${data.sn}</div></div>
+            <div class="row"><div class="label">Estatus:</div><div class="value">${data.t}</div></div>
             <div class="row"><div class="label">Vigencia:</div><div class="value">PERMANENTE</div></div>
         `;
         document.getElementById('resultado-card').style.display = 'block';
         document.getElementById('selector-box').style.display = 'none';
     }
 
-    function validarManual() {
-        const query = document.getElementById('manualInput').value.trim().toUpperCase();
+    function buscarProcesar(query) {
         if (!query) return;
+        let q = query.trim().toUpperCase();
 
-        // Búsqueda Triple: CUA, CURC o CIEC
-        if (REGISTRO_IDENTIDAD[query]) {
-            mostrarCard(REGISTRO_IDENTIDAD[query], query);
-            return;
-        }
-        const encontrado = Object.keys(REGISTRO_IDENTIDAD).find(key => 
-            REGISTRO_IDENTIDAD[key].curc.toUpperCase() === query || 
-            REGISTRO_IDENTIDAD[key].ciec.toUpperCase() === query
-        );
-
-        if (encontrado) {
-            mostrarCard(REGISTRO_IDENTIDAD[encontrado], encontrado);
-        } else {
-            alert("Registro no encontrado. Verifique la clave ingresada.");
-        }
-    }
-
-    // Auto-validar si viene de QR (?folio=XXX)
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('folio')) {
-        const f = urlParams.get('folio');
-        if (REGISTRO_IDENTIDAD[f]) mostrarCard(REGISTRO_IDENTIDAD[f], f);
-    } else if (urlParams.has('n')) {
-        // Compatibilidad V1.0
-        mostrarCard({
-            n: urlParams.get('n').replace(/-/g, ' '),
-            curc: urlParams.get('curc'),
-            ciec: urlParams.get('ciec'),
-            sn: urlParams.get('sn'),
-            t: urlParams.get('t') || "Integrante Originario"
-        }, "V1-REGISTRO");
-    }
-
-    function iniciarCamara() {
-        const reader = document.getElementById('reader');
-        reader.style.display = 'block';
-        const scanner = new Html5Qrcode("reader");
-        scanner.start({ facingMode: "environment" }, { fps: 10, qrbox: 250 }, 
-        (text) => { window.location.href = text; })
-        .catch(err => {
-            reader.style.display = 'none';
-            alert("No se detectó cámara. Por favor use la BÚSQUEDA MANUAL.");
-        });
-    }
-</script>
-</body>
-</html>
+        // Si el escaneo devuelve una
