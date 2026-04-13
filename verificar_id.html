@@ -87,10 +87,36 @@
 
 <script>
     // --- PADRÓN SOBERANO ---
+    // Incluye cambios recientes de CUA (F01) y Holograma (419111), y restaura Ver 1.0
     const REGISTRO_IDENTIDAD = {
-        "XOC-IDCC-2025-F1-P07-CL0002-A-0001": { n: "Kuikakoatl, Roberto", curc: "KUXR800123HDFKXB95", ciec: "KUXR800123X16", sn: "419131", t: "Integrante Originario Diplomático Cultural" },
-        "XOC-IDCC-2024-F01-P05-CL0002-A-0002": { n: "Macani Tlamatini, Jose", curc: "MATJ750826HOCCLS92", ciec: "MATJ750826X16", sn: "419111", t: "Integrante Originario" },
-        "XOC-IDCC-2024-F01-P05-CL0002-B-0001": { n: "Pablo Hernández, Mariela", curc: "PAHM910826MVZBRR94", ciec: "PAHM910826X14", sn: "419121", t: "Integrante Originario" }
+        "XOC-IDCC-2025-F1-P07-CL0002-A-0001": { 
+            n: "Kuikakoatl, Roberto", 
+            curc: "KUXR800123HDFKXB95", 
+            ciec: "KUXR800123X16", 
+            sn: "419131", 
+            t: "Integrante Originario Diplomático Cultural" 
+        },
+        "XOC-IDCC-2024-F01-P05-CL0002-A-0002": { 
+            n: "Macani Tlamatini, Jose", 
+            curc: "MATJ750826HOCCLS92", 
+            ciec: "MATJ750826X16", 
+            sn: "419111", 
+            t: "Integrante Originario" 
+        },
+        "XOC-IDCC-2024-F01-P05-CL0002-B-0001": { 
+            n: "Pablo Hernández, Mariela", 
+            curc: "PAHM910826MVZBRR94", 
+            ciec: "PAHM910826X14", 
+            sn: "419121", 
+            t: "Integrante Originario" 
+        },
+        "XOC-IDCC-2024-F1-P05-CL002-0001": { 
+            n: "Macani Tlamatini, Jose", 
+            curc: "000000000000000000", 
+            ciec: "00000000000", 
+            sn: "419121", 
+            t: "Integrante Originario Diplomático Cultural" 
+        }
     };
 
     function mostrarCard(data, cua) {
@@ -101,12 +127,13 @@
             <div class="row"><div class="label">CURC:</div><div class="value">${data.curc}</div></div>
             <div class="row"><div class="label">CIEC:</div><div class="value">${data.ciec}</div></div>
             <div class="row"><div class="label">Holograma:</div><div class="value">${data.sn}</div></div>
+            <div class="row"><div class="label">Categoría:</div><div class="value">${data.t}</div></div>
+            <div class="row"><div class="label">Vigencia:</div><div class="value">PERMANENTE</div></div>
         `;
         document.getElementById('loading').style.display = 'none';
         document.getElementById('selector-box').style.display = 'none';
         document.getElementById('resultado-card').style.display = 'block';
         
-        // Ocultar header solo si entramos por QR para que la tarjeta sea la protagonista
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('folio')) {
             document.getElementById('main-header').style.display = 'none';
@@ -117,20 +144,25 @@
         if (!textoRecibido) return;
         const q = textoRecibido.trim().toUpperCase();
 
-        let encontrado = false;
-        for (let cua in REGISTRO_IDENTIDAD) {
-            if (q.includes(cua) || cua.includes(q)) {
-                mostrarCard(REGISTRO_IDENTIDAD[cua], cua);
-                encontrado = true;
+        let encontradoKey = null;
+        for (let key in REGISTRO_IDENTIDAD) {
+            if (q.includes(key) || key.includes(q)) {
+                encontradoKey = key;
                 break;
             }
         }
 
-        if (!encontrado) {
-            const id = Object.keys(REGISTRO_IDENTIDAD).find(k => q.includes(REGISTRO_IDENTIDAD[k].curc) || q.includes(REGISTRO_IDENTIDAD[k].ciec));
-            if (id) {
-                mostrarCard(REGISTRO_IDENTIDAD[id], id);
-            } else if (!window.location.search.includes('folio')) {
+        if (!encontradoKey) {
+            encontradoKey = Object.keys(REGISTRO_IDENTIDAD).find(key => {
+                const m = REGISTRO_IDENTIDAD[key];
+                return (m.curc && q.includes(m.curc.toUpperCase())) || (m.ciec && q.includes(m.ciec.toUpperCase()));
+            });
+        }
+
+        if (encontradoKey) {
+            mostrarCard(REGISTRO_IDENTIDAD[encontradoKey], encontradoKey);
+        } else {
+            if (!window.location.search.includes('folio')) {
                 alert("REGISTRO NO LOCALIZADO");
             }
         }
