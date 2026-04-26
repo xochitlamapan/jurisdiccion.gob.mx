@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Circular de Votaciones | Xochitlamapan</title>
+    <title>Gobernanza Circular | Xochitlamapan</title>
     <link rel="icon" type="image/png" href="logo.png">
     <style>
         :root {
@@ -12,7 +12,7 @@
             --crema: #F4F1EA;
             --oro: #B8860B;
             --blanco: #ffffff;
-            --texto: #333;
+            --texto: #2d2d2d;
         }
 
         body {
@@ -20,11 +20,9 @@
             background-color: var(--crema);
             color: var(--texto);
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        /* CABECERA */
         header {
             background: white;
             border-bottom: 6px solid var(--vino);
@@ -35,83 +33,77 @@
         .bandera-img { position: absolute; top: 0; width: 120px; opacity: 0.8; }
         .izq { left: 0; }
         .der { right: 0; transform: scaleX(-1); }
-        .escudo { width: 90px; margin-bottom: 10px; }
+        .escudo { width: 80px; margin-bottom: 10px; }
 
-        .container { max-width: 1000px; margin: 30px auto; padding: 20px; }
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
 
-        /* SECCIÓN DE VIDEO Y BIENVENIDA */
-        .intro-flex {
+        /* INTRODUCCIÓN Y VIDEO */
+        .intro-section {
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
             background: white;
-            padding: 30px;
+            padding: 35px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             border-top: 8px solid var(--jade);
         }
+        .video-box { flex: 1; min-width: 320px; }
+        .texto-intro { flex: 1.2; min-width: 320px; }
+        video { width: 100%; border-radius: 12px; border: 4px solid var(--jade); background: #000; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
-        .video-box { flex: 1; min-width: 300px; }
-        .texto-intro-box { flex: 1.2; min-width: 300px; }
-
-        video {
-            width: 100%;
-            border-radius: 10px;
-            border: 3px solid var(--jade);
-            background: #000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* ESTILO DE LA CÁTEDRA */
+        /* LA CÁTEDRA */
         .catedra-card {
             background: white;
-            padding: 40px;
+            padding: 50px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             margin-bottom: 40px;
+            position: relative;
         }
-
-        h1 { color: var(--jade); text-transform: uppercase; text-align: center; font-size: 1.6rem; margin-bottom: 20px; }
-        h2 { color: var(--vino); font-size: 1.3rem; margin-top: 30px; border-left: 5px solid var(--oro); padding-left: 15px; }
+        h1 { color: var(--jade); text-transform: uppercase; font-size: 1.8rem; border-bottom: 2px solid #eee; padding-bottom: 15px; text-align: center; }
+        h2 { color: var(--vino); font-size: 1.4rem; margin-top: 40px; border-left: 6px solid var(--oro); padding-left: 20px; text-transform: uppercase; letter-spacing: 1px; }
         
-        .discurso { text-align: justify; font-size: 1.1rem; color: #444; }
-        .destacado-sabiduria { background: #fdfaf0; border: 1px dashed var(--oro); padding: 20px; margin: 25px 0; border-radius: 10px; font-style: italic; }
-        .ejemplo-box { background: #f1f4f2; padding: 18px; border-radius: 8px; margin: 15px 0; border-left: 4px solid var(--jade); }
+        .cuerpo-texto { text-align: justify; font-size: 1.1rem; }
+        .destacado { background: #fdfaf0; border: 1px dashed var(--oro); padding: 25px; margin: 30px 0; border-radius: 12px; font-weight: 500; }
+        
+        .ejemplo { background: #f1f4f2; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 5px solid var(--jade); }
+        .ejemplo strong { color: var(--vino); display: block; margin-bottom: 10px; text-transform: uppercase; font-size: 0.9rem; }
 
         /* CALCULADORA */
-        .calc-container {
-            background-color: var(--blanco);
+        .calc-box {
+            background: var(--blanco);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            border: 2px solid var(--jade);
-            margin-bottom: 40px;
+            border: 3px solid var(--jade);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
         }
-
-        .section { background: #f9f9f9; padding: 25px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #eee; }
-        .section h3 { margin-top: 0; color: var(--jade); font-size: 1.1rem; text-transform: uppercase; }
+        .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 30px 0; }
+        .seccion-calc { background: #f9f9f9; padding: 20px; border-radius: 10px; border: 1px solid #eee; }
+        .seccion-calc h4 { color: var(--jade); margin-top: 0; text-transform: uppercase; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
         
-        label { display: block; font-weight: bold; margin-bottom: 8px; font-size: 0.9rem; }
-        input[type="number"], select { 
-            width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; box-sizing: border-box; 
-        }
+        label { display: block; font-weight: bold; margin-bottom: 8px; font-size: 0.85rem; color: #555; }
+        input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
 
-        .btn-calc {
-            width: 100%; background: var(--vino); color: white; padding: 18px; border: none; border-radius: 8px; 
-            font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase;
+        .btn-principal {
+            width: 100%; background: var(--vino); color: white; padding: 20px; border: none; border-radius: 8px; 
+            font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
         }
-        .btn-calc:hover { background: #4a0d1a; transform: translateY(-2px); }
+        .btn-principal:hover { background: #4a0d1a; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
-        #resultado { margin-top: 30px; display: none; padding: 25px; border-radius: 10px; text-align: center; }
-        .aprobado { background: #e8f5e9; border: 2px solid #2e7d32; color: #1b5e20; }
-        .rechazado { background: #fbe9e7; border: 2px solid #d84315; color: #bf360c; }
+        #resultado-voto { margin-top: 35px; display: none; padding: 30px; border-radius: 12px; text-align: center; border: 2px solid #ddd; }
+        .exito { background: #e8f5e9; border-color: #2e7d32 !important; color: #1b5e20; }
+        .fracaso { background: #fbe9e7; border-color: #d84315 !important; color: #bf360c; }
         
-        .porcentaje-gigante { font-size: 3rem; font-weight: bold; display: block; margin: 5px 0; font-family: monospace; }
+        .porcentaje { font-size: 4rem; font-weight: bold; display: block; font-family: 'Courier New', Courier, monospace; }
 
-        footer { background: #1a1a1a; color: white; padding: 40px 20px; text-align: center; margin-top: 60px; }
-        .btn-volver { display: inline-block; margin-bottom: 30px; color: var(--jade); text-decoration: none; font-weight: bold; border: 1px solid var(--jade); padding: 10px 25px; border-radius: 5px; }
+        .footer-comunidad { background: #1a1a1a; color: white; padding: 50px 20px; text-align: center; margin-top: 50px; }
+        .btn-back { display: inline-block; margin-bottom: 30px; color: var(--jade); text-decoration: none; font-weight: bold; border: 2px solid var(--jade); padding: 10px 25px; border-radius: 8px; transition: 0.3s; }
+        .btn-back:hover { background: var(--jade); color: white; }
 
+        @media (max-width: 768px) { .calc-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -120,141 +112,152 @@
     <img src="bandera.png" class="bandera-img izq">
     <img src="bandera.png" class="bandera-img der">
     <img src="logo.png" class="escudo">
-    <h1>Cátedra de Gobernanza Soberana</h1>
+    <h1 style="color:var(--jade); margin:0; font-size: 1.5rem;">Cátedra de Votaciones y Consenso</h1>
 </header>
 
 <div class="container">
     
-    <center><a href="miembros.html" class="btn-volver">← VOLVER AL ARCHIVO SOBERANO</a></center>
+    <center><a href="miembros.html" class="btn-back">← VOLVER AL ARCHIVO SOBERANO</a></center>
 
-    <!-- SECCIÓN DE INTRODUCCIÓN CON VIDEO -->
-    <div class="intro-flex">
+    <div class="intro-section">
         <div class="video-box">
             <video controls poster="logo.png">
                 <source src="video_votaciones_xochi.mp4" type="video/mp4">
-                Tu navegador no soporta el video.
+                Su navegador no soporta video.
             </video>
-            <p style="font-size: 0.75rem; text-align: center; color: var(--vino); margin-top: 10px; font-weight: bold;">
-                ▶ VIDEO EXPLICATIVO: SISTEMA CIRCULAR
-            </p>
+            <p style="font-size: 0.7rem; text-align: center; color: var(--vino); font-weight: bold; margin-top: 10px;">▶ INSTRUCTIVO: SISTEMA CIRCULAR</p>
         </div>
-        <div class="texto-intro-box">
-            <h1 style="text-align: left; border-bottom: 2px solid var(--oro); padding-bottom: 10px;">Aclaraciones sobre el Sistema</h1>
-            <p class="discurso" style="font-size: 1rem;">
-                "Hermanos y Hermanas de Xochitlamapan:<br><br>
-                Nuestro sistema no es una pirámide, es un <strong>Círculo de Sabiduría y Justicia</strong>. Aquí no buscamos 'ganar' votaciones; buscamos <strong>CONSENSO</strong>. La Constitución exige superar el 70% para asegurar que nuestras decisiones sean fruto de la reflexión y no del impulso."
+        <div class="texto-intro">
+            <h1 style="text-align: left; font-size: 1.4rem;">Cátedra para la Asamblea General</h1>
+            <p class="cuerpo-texto">
+                "Hermanos y Hermanas de Xochitlamapan: Nos han hecho creer que la democracia se reduce a la voluntad de una mayoría simple: el 50% más uno. Sin embargo, el sistema piramidal externo nos demuestra que este modelo no busca la paz, sino el poder."
             </p>
         </div>
     </div>
 
-    <!-- CUERPO DE LA CÁTEDRA -->
     <article class="catedra-card">
-        <div class="discurso">
-            <p>Nos han hecho creer que la democracia perfecta es el '50% más uno'. Pero ese sistema crea pueblos divididos por la mitad, donde una mayoría momentánea aplasta a los demás. Nuestro sistema busca que votemos informados de verdad, aunque a veces eso retrase una decisión. Es un sistema diseñado para la reflexión coherente.</p>
+        <h1>Claridad sobre el Sistema Circular</h1>
+        
+        <div class="cuerpo-texto">
+            <p>Nuestro sistema no es una pirámide; es un <strong>Sistema Circular</strong>. Es un círculo de consenso donde convergen la Cosmovisión, la Sabiduría, la Energía y la Justicia. Aquí no se busca "ganar" votaciones, buscamos el CONSENSO. Por ello, nuestra Constitución es exigente: para validar una decisión, se debe superar el umbral del <strong>70% (70.01% como mínimo)</strong>.</p>
 
-            <h2>El Equilibrio de las Dos Fuerzas</h2>
-            <p>Para lograr ese 70%, el poder se divide en:</p>
+            <p>Si no logramos convencer a esa gran mayoría, la idea no está madura. Entonces, regresamos al diálogo para comprender al otro. Este sistema está diseñado para la reflexión coherente, protegiéndonos de impulsos emocionales o herencias de manipulación externas.</p>
+
+            <h2>La Dualidad del Consenso: El 70%</h2>
+            <p>Para alcanzar esta legitimidad, el sistema se divide en dos fuerzas complementarias:</p>
             <ul>
-                <li><strong>La Asamblea (60%):</strong> La voz de todos los presentes. Cada uno de ustedes aporta una parte igual de este poder.</li>
-                <li><strong>El Consejo de Sabios (40%):</strong> La memoria y el freno de seguridad de nuestra comunidad.</li>
+                <li><strong>La Asamblea (60%):</strong> Representa la fuerza vital, la necesidad del presente y la voz de la comunidad. Cada miembro posee una fracción igualitaria de este porcentaje.</li>
+                <li><strong>El Consejo de Sabios (40%):</strong> Representa la memoria, el conocimiento acumulado y el "freno de seguridad" que protege nuestra identidad. Su labor es voluntaria, no remunerada y basada estrictamente en el mérito.</li>
             </ul>
 
-            <div class="destacado-sabiduria">
-                El Sabio Mayor tiene un "puntito" extra (8 puntos vs 7) por su peso de experiencia y conocimiento del sistema que construyó nuestra autonomía.
+            <h2>Rigor Interno del Consejo (Los Tlamatinis)</h2>
+            <p>Para que el voto del Consejo sea válido, sus integrantes deben alcanzar un consenso interno de al menos el <strong>60%</strong>. Si no lo logran, el aporte del Consejo a la votación general es <strong>0%</strong>, imposibilitando alcanzar el 70% constitucional aunque la Asamblea esté unánime.</p>
+
+            <div class="destacado">
+                Dentro del Consejo, el Tlamatini Mayor posee una ponderación matemática ligeramente superior (un 14% adicional respecto a los Sabios Regulares) para dirimir bloqueos. No es un dictador: si los 4 Sabios Regulares se unen, pueden superar su voto.
             </div>
 
-            <h2>Ejemplos de Superioridad Circular</h2>
-            <div class="ejemplo-box">
-                <strong>1. El Freno de Mano:</strong> Si la Asamblea vota SÍ (60%) a algo peligroso pero el Consejo vota NO, la decisión se rechaza. El Consejo nos salva de errores irreversibles.
-            </div>
+            <h2>Superioridad del Sistema Circular</h2>
             
-            <div class="ejemplo-box">
-                <strong>2. El Muro de la Comunidad:</strong> Si el Consejo propone algo pero el pueblo no lo apoya masivamente, la votación fracasa. El Consejo nunca impone su voluntad.
+            <div class="ejemplo">
+                <strong>I. El Freno de Emergencia (Protección de la Tierra):</strong>
+                Si una entidad externa ofrece dinero que pone en riesgo el bosque y la Asamblea vota "SÍ" (60%), pero el Consejo detecta el peligro y vota "NO" (0%), el resultado es 60%: <strong>RECHAZADO</strong>. El Consejo nos salva de un error irreversible.
             </div>
 
-            <div class="ejemplo-box">
-                <strong>3. El Empate Tramposo:</strong> Un 70.0% exacto es RECHAZADO. Se requiere superar el 70% (70.01% mínimo) para demostrar que convencimos hasta al último hermano dudoso.
+            <div class="ejemplo">
+                <strong>II. El Muro de la Comunidad (Contra la Imposición):</strong>
+                Si el Consejo propone una norma estricta (40%) pero el pueblo no está convencido y solo vota el 10%, el total es 50%: <strong>RECHAZADO</strong>. El Consejo jamás podrá imponer su voluntad sin el respaldo masivo.
             </div>
 
-            <p style="margin-top:40px; text-align:center; font-weight:bold; color:var(--jade);">
-                In ixtli, in yollotl. Rostro sabio y corazón firme.<br>Aquí no se impone, aquí se convence.
+            <div class="ejemplo">
+                <strong>III. El Empate que Obliga al Diálogo:</strong>
+                Si el Consejo vota "SÍ" (40%) y la Asamblea se divide a la mitad (30%), el resultado es 70.0%. En Xochitlamapan, esto es <strong>RECHAZADO</strong>. Un empate no se resuelve a la fuerza; se resuelve con más diálogo. Necesitamos el 70.01%.
+            </div>
+
+            <p style="margin-top:40px; text-align:center; font-weight:bold; color:var(--jade); font-size: 1.3rem;">
+                <em>In ixtli, in yollotl: Rostro sabio y corazón firme.</em>
             </p>
         </div>
     </article>
 
     <!-- CALCULADORA -->
-    <div class="calc-container">
-        <h1>Calculadora de Consenso</h1>
-        <p style="text-align:center; color:var(--oro); font-weight:bold; margin-bottom:30px; font-size: 0.8rem;">HERRACIERTA DE APOYO ADMINISTRATIVO</p>
+    <div class="calc-box">
+        <h2 style="text-align: center; margin-top: 0; color: var(--jade);">Calculadora de Consenso Soberano</h2>
+        <p style="text-align:center; color:var(--oro); font-weight:bold; margin-bottom:30px; font-size: 0.8rem;">HERRACIERTA TÉCNICA DE SECRETARÍA</p>
 
-        <div class="section">
-            <h3>I. Consejo de Tlamatinis (40%)</h3>
-            <label>Tlamatinis Regulares a favor (0 a 4):</label>
-            <input type="number" id="sabiosRegulares" min="0" max="4" value="0">
-            
-            <label>¿El Tlamatini Mayor votó A FAVOR?</label>
-            <select id="sabioMayor">
-                <option value="NO">NO (0 puntos)</option>
-                <option value="SI">SÍ (8 puntos)</option>
-            </select>
+        <div class="calc-grid">
+            <div class="seccion-calc">
+                <h4>I. Consejo de Tlamatinis</h4>
+                <label>Sabios Regulares a Favor (0-4):</label>
+                <input type="number" id="sabReg" min="0" max="4" value="0">
+                <label>¿Tlamatini Mayor a Favor?</label>
+                <select id="sabMay">
+                    <option value="NO">NO</option>
+                    <option value="SI">SÍ</option>
+                </select>
+            </div>
+            <div class="seccion-calc">
+                <h4>II. Asamblea General</h4>
+                <label>Miembros Presentes:</label>
+                <input type="number" id="totalAsam" placeholder="Total">
+                <label>Votos a Favor:</label>
+                <input type="number" id="votosAsam" placeholder="Votos SI">
+            </div>
         </div>
 
-        <div class="section">
-            <h3>II. Asamblea Democrática (60%)</h3>
-            <label>Total de Asambleístas PRESENTES:</label>
-            <input type="number" id="totalAsamblea" placeholder="Ej: 100">
+        <button class="btn-principal" onclick="validarVotacion()">Calcular Decisión Jurisdiccional</button>
 
-            <label>Votos A FAVOR en la Asamblea:</label>
-            <input type="number" id="votosAsamblea" placeholder="Ej: 75">
-        </div>
-
-        <button class="btn-calc" onclick="calcularConsenso()">Calcular Decisión Soberana</button>
-
-        <div id="resultado">
-            <div id="estado-texto" style="font-size: 1.5rem; font-weight: bold; text-transform: uppercase;"></div>
-            <div id="porcentaje-texto" class="porcentaje-gigante">0%</div>
-            <div id="reflexion-texto" style="text-align: justify; margin-top: 20px; font-size: 0.9rem; line-height: 1.4;"></div>
+        <div id="resultado-voto">
+            <div id="status-txt" style="font-weight: bold; text-transform: uppercase; font-size: 1.2rem;"></div>
+            <span id="porcentaje-txt" class="porcentaje">0%</span>
+            <p id="reflexion-txt" style="font-style: italic; margin-top: 15px;"></p>
         </div>
     </div>
 
 </div>
 
 <footer>
-    <p><strong>JURISDICCIÓN SOBERANA XOCHITLAMAPAN</strong></p>
-    <p style="font-size: 0.8rem; opacity: 0.7;">Consenso • Horizontalidad • Verdad Jurídica</p>
+    <p><strong>GOBIERNO DE JURISDICCIÓN PREEXISTENTE XOCHITLAMAPAN</strong></p>
+    <p style="font-size: 0.8rem; opacity: 0.7;">En nuestra comunidad, no se impone: se convence.</p>
 </footer>
 
 <script>
-    function calcularConsenso() {
-        let sabiosReg = parseInt(document.getElementById("sabiosRegulares").value) || 0;
-        let sabioMayor = document.getElementById("sabioMayor").value;
-        let totalAsamblea = parseInt(document.getElementById("totalAsamblea").value) || 0;
-        let votosAsamblea = parseInt(document.getElementById("votosAsamblea").value) || 0;
+    function validarVotacion() {
+        const sr = parseInt(document.getElementById('sabReg').value) || 0;
+        const sm = document.getElementById('sabMay').value;
+        const ta = parseInt(document.getElementById('totalAsam').value) || 0;
+        const va = parseInt(document.getElementById('votosAsam').value) || 0;
 
-        let resBox = document.getElementById("resultado");
-        let estadoTxt = document.getElementById("estado-texto");
-        let porcTxt = document.getElementById("porcentaje-texto");
-        let reflexTxt = document.getElementById("reflexion-texto");
+        const resDiv = document.getElementById('resultado-voto');
+        const stTxt = document.getElementById('status-txt');
+        const pcTxt = document.getElementById('porcentaje-txt');
+        const rfTxt = document.getElementById('reflexion-txt');
 
-        if (totalAsamblea <= 0) { alert("Ingrese el total de la asamblea."); return; }
+        if (ta <= 0) { alert("Ingrese el total de la asamblea."); return; }
+        if (va > ta) { alert("Los votos no pueden ser mayores a los presentes."); return; }
 
-        let puntosConsejo = (sabiosReg * 7) + (sabioMayor === "SI" ? 8 : 0);
-        let aportacionConsejo = (puntosConsejo >= 21.6) ? 40.0 : 0.0;
-        let aportacionAsamblea = (votosAsamblea / totalAsamblea) * 60.0;
-        let total = aportacionConsejo + aportacionAsamblea;
+        // Cálculo Consejo (Meta interna 21.6 pts de 36 totales)
+        const ptsConsejo = (sr * 7) + (sm === "SI" ? 8 : 0);
+        const aporteConsejo = (ptsConsejo >= 21.6) ? 40.0 : 0.0;
 
-        resBox.style.display = "block";
-        resBox.className = "";
-        porcTxt.innerText = total.toFixed(2) + "%";
+        // Cálculo Asamblea (Proporcional a 60%)
+        const aporteAsamblea = (va / ta) * 60.0;
+        const total = aporteConsejo + aporteAsamblea;
 
+        resDiv.style.display = "block";
+        resDiv.className = (total > 70.00) ? "exito" : "fracaso";
+        
+        pcTxt.innerText = total.toFixed(2) + "%";
+        
         if (total > 70.00) {
-            resBox.classList.add("aprobado");
-            estadoTxt.innerText = "¡CONSENSO LOGRADO!";
-            reflexTxt.innerHTML = "La propuesta ha sido validada por la voluntad conjunta del Consejo y el Pueblo. <strong>Decisión Firme.</strong>";
+            stTxt.innerText = "✓ CONSENSO LOGRADO";
+            rfTxt.innerText = "La decisión es firme y vinculante. Se ha superado el umbral constitucional.";
+        } else if (total === 70.00) {
+            stTxt.innerText = "✗ RECHAZADO POR EMPATE";
+            rfTxt.innerText = "La ley exige superar el 70%. Regresen al diálogo para convencer al resto.";
         } else {
-            resBox.classList.add("rechazado");
-            estadoTxt.innerText = "NO HAY CONSENSO";
-            reflexTxt.innerHTML = "El resultado es insuficiente para la Constitución (requiere >70%). Se debe continuar el diálogo.";
+            stTxt.innerText = "✗ CONSENSO INSUFICIENTE";
+            rfTxt.innerText = "La propuesta no cuenta con el respaldo necesario. Debe replantearse.";
         }
     }
 </script>
